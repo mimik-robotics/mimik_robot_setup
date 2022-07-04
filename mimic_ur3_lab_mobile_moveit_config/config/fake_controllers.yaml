@@ -1,0 +1,30 @@
+controller_list:
+  - name: fake_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - robotiq_2f140_left_outer_knuckle_joint
+  - name: fake_eef_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - ur3_shoulder_pan_joint
+      - ur3_shoulder_lift_joint
+      - ur3_elbow_joint
+      - ur3_wrist_1_joint
+      - ur3_wrist_2_joint
+      - ur3_wrist_3_joint
+  - name: fake_eff_pipette_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - ur3_shoulder_pan_joint
+      - ur3_shoulder_lift_joint
+      - ur3_elbow_joint
+      - ur3_wrist_1_joint
+      - ur3_wrist_2_joint
+      - ur3_wrist_3_joint
+initial:  # Define initial robot poses per group
+  - group: gripper
+    pose: open
+  - group: eef_gripper
+    pose: home
+  - group: eff_pipette
+    pose: home
