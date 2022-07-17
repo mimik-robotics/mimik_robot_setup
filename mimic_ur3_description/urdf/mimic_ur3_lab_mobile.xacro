@@ -10,6 +10,9 @@
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/>
   <xacro:include filename="$(find mimic_description)/urdf/mimic/pipette_macro.xacro"/>
 
+  <!-- TCP calibration of the robotiq gripper (xyz)-->
+  <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
+
   <!-- Table supporting the tabletop breadboard -->
   <link name="tabletop">
     <!-- <visual> -->
@@ -133,7 +136,7 @@
   <joint name="robotiq_2f140_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_left" />
     <child link = "robotiq_2f140_base_link" />
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" />
   </joint>
 
   <joint name="pipette_base_joint" type="fixed">
