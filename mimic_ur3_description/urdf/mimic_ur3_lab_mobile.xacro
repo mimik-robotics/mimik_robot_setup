@@ -7,6 +7,7 @@
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_ft_300/robotiq_ft_300_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_apl_159_002/robotiq_agc_apl_159_002_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_140/inc/robotiq_2f_140_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/>
   <xacro:include filename="$(find mimic_description)/urdf/mimic/pipette_macro.xacro"/>
 
   <!-- Table supporting the tabletop breadboard -->
@@ -74,9 +75,12 @@
     prefix="dual_gripper_coupling_"
     visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_apl_159_002/visual_parameters.yaml"/>
 
+  <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
     prefix="robotiq_2f140_"
     visual_parameters_file="$(find robotiq_description)/config/robotiq_2f_140/visual_parameters.yaml"/>
+    fingertip_pad_macro_name="robotiq_agc_tip_220_140"
+    fingertip_pad_macro_attribute_visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_tip_220_140/visual_parameters.yaml"/>
 
   <xacro:mimic_pipette
     prefix="pipette_"/>
