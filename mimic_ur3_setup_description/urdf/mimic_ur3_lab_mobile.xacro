@@ -62,26 +62,26 @@
   <xacro:ur3_robot
     prefix="ur3_"
     kinematics_parameters_file="$(find mimic_ur_launch)/etc/ur3-2017333047-calibration.yaml"
-    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters.yaml"/>
+    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_bbox.yaml"/>
 
   <!-- FT-300 ur coupling + sensor -->
   <xacro:robotiq_fts_300_cpl_062
     prefix="robotiq_ft300_coupling_"
-    visual_parameters_file="$(find robotiq_description)/config/robotiq_fts_300_cpl_062/visual_parameters.yaml"/>
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_fts_300_cpl_062/visual_parameters_bbox.yaml"/>
 
   <xacro:robotiq_ft_300
     prefix="robotiq_ft300_"
-    visual_parameters_file="$(find robotiq_description)/config/robotiq_ft_300/visual_parameters.yaml"/>
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_ft_300/visual_parameters_bbox.yaml"/>
 
   <!-- Dual gripper mounting plate -->
   <xacro:robotiq_agc_apl_159_002
     prefix="dual_gripper_coupling_"
-    visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_apl_159_002/visual_parameters.yaml"/>
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_apl_159_002/visual_parameters_bbox.yaml"/>
 
   <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
     prefix="robotiq_2f140_"
-    visual_parameters_file="$(find robotiq_description)/config/robotiq_2f_140/visual_parameters.yaml"/>
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_2f_140/visual_parameters_bbox.yaml"
     fingertip_pad_macro_name="robotiq_agc_tip_220_140"
     fingertip_pad_macro_attribute_visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_tip_220_140/visual_parameters.yaml"/>
 
@@ -136,6 +136,7 @@
   <joint name="robotiq_2f140_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_left" />
     <child link = "robotiq_2f140_base_link" />
+    <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
     <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" />
   </joint>
 
