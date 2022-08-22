@@ -1,6 +1,6 @@
 moveit_setup_assistant_config:
   URDF:
-    package: mimic_ur3_description
+    package: mimic_ur3_setup_description
     relative_path: urdf/mimic_ur3_lab_mobile.xacro
     xacro_args: ""
   SRDF:
