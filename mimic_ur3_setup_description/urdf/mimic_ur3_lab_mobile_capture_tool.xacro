@@ -5,7 +5,7 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/ur3_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_fts_300_cpl_062/robotiq_fts_300_cpl_062_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_ft_300/robotiq_ft_300_macro.xacro"/>
-  <xacro:include filename="$(find mimic_description)/urdf/mimic/capture_tool_macro.xacro"/>
+  <xacro:include filename="$(find mimic_description)/urdf/mimic/ur3_capture_tool_macro.xacro"/>
   <!-- <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_apl_159_002/robotiq_agc_apl_159_002_macro.xacro"/> -->
   <!-- <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_140/inc/robotiq_2f_140_macro.xacro"/> -->
   <!-- <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/> -->
@@ -71,7 +71,7 @@
     prefix="robotiq_ft300_"
     visual_parameters_file="$(find robotiq_description)/config/robotiq_ft_300/visual_parameters_bbox.yaml"/>
 
-  <xacro:mimic_capture_tool
+  <xacro:mimic_ur3_capture_tool
     prefix="capture_tool_"/>
 
   <joint name="newport_base_joint" type="fixed">

@@ -8,7 +8,7 @@
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_apl_159_002/robotiq_agc_apl_159_002_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_140/inc/robotiq_2f_140_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/>
-  <xacro:include filename="$(find mimic_description)/urdf/mimic/pipette_macro.xacro"/>
+  <xacro:include filename="$(find mimic_description)/urdf/mimic/pipette_p200_macro.xacro"/>
 
   <!-- TCP calibration of the robotiq gripper (xyz)-->
   <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
@@ -85,7 +85,7 @@
     fingertip_pad_macro_name="robotiq_agc_tip_220_140"
     fingertip_pad_macro_attribute_visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_tip_220_140/visual_parameters.yaml"/>
 
-  <xacro:mimic_pipette
+  <xacro:mimic_pipette_p200
     prefix="pipette_"/>
 
   <joint name="newport_base_joint" type="fixed">
