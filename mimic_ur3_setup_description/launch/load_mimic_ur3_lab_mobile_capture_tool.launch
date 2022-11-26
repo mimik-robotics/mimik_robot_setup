@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <param name="robot_description" command="$(find xacro)/xacro '$(find mimic_ur3_setup_description)/urdf/mimic_ur3_lab_mobile_capture_tool.xacro'"/>
-
-  <!-- Convert joint states to /tf tranforms -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
-</launch>
