@@ -1,90 +1,13 @@
-gripper_controller:
-  type: effort_controllers/JointTrajectoryController
-  joints:
-    - robotiq_2f140_left_outer_knuckle_joint
-  gains:
-    robotiq_2f140_left_outer_knuckle_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-eef_gripper_controller:
-  type: effort_controllers/JointTrajectoryController
-  joints:
-    - ur3_shoulder_pan_joint
-    - ur3_shoulder_lift_joint
-    - ur3_elbow_joint
-    - ur3_wrist_1_joint
-    - ur3_wrist_2_joint
-    - ur3_wrist_3_joint
-  gains:
-    ur3_shoulder_pan_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_shoulder_lift_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_elbow_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_1_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_2_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_3_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-eff_pipette_controller:
-  type: effort_controllers/JointTrajectoryController
-  joints:
-    - ur3_shoulder_pan_joint
-    - ur3_shoulder_lift_joint
-    - ur3_elbow_joint
-    - ur3_wrist_1_joint
-    - ur3_wrist_2_joint
-    - ur3_wrist_3_joint
-  gains:
-    ur3_shoulder_pan_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_shoulder_lift_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_elbow_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_1_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_2_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
-    ur3_wrist_3_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+controller_list:
+  - name: /pos_joint_traj_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - ur3_shoulder_pan_joint
+      - ur3_shoulder_lift_joint
+      - ur3_elbow_joint
+      - ur3_wrist_1_joint
+      - ur3_wrist_2_joint
+      - ur3_wrist_3_joint
+
