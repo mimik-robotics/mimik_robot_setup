@@ -57,12 +57,6 @@
   <xacro:newport_sa2_30x30
     prefix="newport_"/>
 
-  <xacro:mimik_biorad_t100_adapter
-    prefix="t100_adapter_"/>
-
-  <xacro:biorad_thermal_cycler_t100_open
-    prefix="t100_"/>
-
   <xacro:mimik_ur3_mounting_plate
     prefix="ur3_mounting_plate_"/>
 
@@ -114,20 +108,6 @@
     <child link = "ur3_mounting_plate_base" />
     <!-- Newport tabletop has matrix of 1 inch hole gap-->
     <origin xyz="${-2 * 0.0254} ${12 * 0.0254} 0.0" rpy="0.0 0.0 ${-pi/2}" />
-  </joint>
-
-  <joint name="t100_adapter_joint" type="fixed">
-    <parent link= "newport_tabletop" />
-    <child link = "t100_adapter_base" />
-    <!-- Newport tabletop has matrix of 1 inch hole gap-->
-    <origin xyz="${-3.5 * 0.0254} ${-4.5 * 0.0254} 0.0" rpy="0.0 0.0 ${0.927295218}" />
-  </joint>
-
-  <joint name="t100_joint" type="fixed">
-    <parent link= "t100_adapter_base" />
-    <child link = "t100_base" />
-    <!-- Newport tabletop has matrix of 1 inch hole gap-->
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
   <joint name="ur3_base_joint" type="fixed">
