@@ -18,7 +18,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <box size="1.27 1.1176 0.0254" />
+                <box size="1.1176 1.27 0.0254" />
             </geometry>
         </collision>
         <inertial>
@@ -39,9 +39,9 @@
         <!--   </material> -->
         <!-- </visual> -->
         <collision>
-            <origin rpy="-1.5707963267948966 0 0" xyz="0 0 0" />
+            <origin rpy="0 -1.5707963267948966 0" xyz="0 0 0" />
             <geometry>
-                <box size="1.27 1.1176 0.0254" />
+                <box size="1.1176 1.27 0.0254" />
             </geometry>
         </collision>
         <inertial>
@@ -59,7 +59,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/newport/visual/sa2_30x30.dae" />
+                <mesh filename="package://mimik_description/meshes/newport/sa2_30x30/visual/101k.dae" />
             </geometry>
             <material name="">
                 <color rgba="0.79216 0.81961 0.93333 1" />
@@ -68,7 +68,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/newport/collision/sa2_30x30.stl" />
+                <mesh filename="package://mimik_description/meshes/newport/sa2_30x30/collision/p12.stl" />
             </geometry>
         </collision>
     </link>
@@ -78,6 +78,10 @@
         <parent link="newport_base" />
         <child link="newport_tabletop" />
     </joint>
+    <!-- <xacro:mimik_biorad_t100_adapter -->
+    <!--   prefix="t100_adapter_"/> -->
+    <!-- <xacro:biorad_thermal_cycler_t100_open -->
+    <!--   prefix="t100_"/> -->
     <link name="ur3_mounting_plate_base">
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0" />
@@ -88,7 +92,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/mimik/visual/ur3_mounting_plate.dae" />
+                <mesh filename="package://mimik_description/meshes/mimik/ur3_mounting_plate/visual/2k.dae" />
             </geometry>
             <material name="">
                 <color rgba="0.79216 0.81961 0.93333 1" />
@@ -97,7 +101,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/mimik/collision/ur3_mounting_plate.stl" />
+                <mesh filename="package://mimik_description/meshes/mimik/ur3_mounting_plate/collision/cv12.stl" />
             </geometry>
         </collision>
     </link>
@@ -238,7 +242,7 @@
         <collision>
             <origin rpy="0 0 3.141592653589793" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/base.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/base.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -260,7 +264,7 @@
         <collision>
             <origin rpy="0 0 3.141592653589793" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/shoulder.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/shoulder.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -282,7 +286,7 @@
         <collision>
             <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0.1198" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/upperarm.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/upperarm.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -304,7 +308,7 @@
         <collision>
             <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0.0275" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/forearm.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/forearm.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -327,7 +331,7 @@
         <collision>
             <origin rpy="1.5707963267948966 0 0" xyz="0 0 -0.085" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/wrist1.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/wrist1.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -349,7 +353,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 -0.085" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/wrist2.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/wrist2.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -371,7 +375,7 @@
         <collision>
             <origin rpy="1.5707963267948966 0 0" xyz="0 0 -0.082" />
             <geometry>
-                <mesh filename="package://ur_description/meshes/ur3/collision/bbox/wrist3.stl" />
+                <mesh filename="package://ur_description/meshes/ur3/collision/vhacd_h16/wrist3.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -533,13 +537,9 @@
             </geometry>
         </collision>
     </link>
-    <link name="robotiq_ft300_toolside" />
+    <!-- Make frame_id link as part of the kinematic change (e.g. for compatibility with cartesian force controllers) -->
     <link name="robotiq_ft300_frame_id" />
-    <joint name="robotiq_ft300_toolside_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0.0348 0 0" />
-        <parent link="robotiq_ft300_robotside" />
-        <child link="robotiq_ft300_toolside" />
-    </joint>
+    <link name="robotiq_ft300_toolside" />
     <!-- FORCE REFERENCE FRAME
         As specified in the documentation:
         - The Z axis passes through the center of the depression with positive direction in the tool direction.
@@ -547,9 +547,15 @@
             points the opposite way away from the connector.
         - The Y axis uses the right hand thumb rule according to X-Z. -->
     <joint name="robotiq_ft300_frame_id_joint" type="fixed">
-        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0.0348 0 0" />
         <parent link="robotiq_ft300_robotside" />
         <child link="robotiq_ft300_frame_id" />
+    </joint>
+    <!-- Revert to ROS convention orientation -->
+    <joint name="robotiq_ft300_toolside_joint" type="fixed">
+        <origin rpy="0 -1.5707963267948966 1.5707963267948966" xyz="0 0 0" />
+        <parent link="robotiq_ft300_frame_id" />
+        <child link="robotiq_ft300_toolside" />
     </joint>
     <!--
     NOTE: the macros defined in this file are NOT part of the public API of this
@@ -733,6 +739,37 @@
             </geometry>
         </collision>
     </link>
+    <!--
+    NOTE: the macros defined in this file are NOT part of the public API of this
+          package. Users CANNOT rely on this file being available, or stored in
+          this location. Nor can they rely on the existence of the two macros.
+
+    Author: Ludovic Delval
+    Contributor: Felix Messmer
+  -->
+    <!-- Link representing the silicon finger tip pad -->
+    <link name="robotiq_2f140_left_fingertip_pad">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.00227643166121317 -0.00163641909670073 -0.000186465195632485" />
+            <mass value="0.0212636185801172" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://robotiq_description/meshes/robotiq_agc_tip_220_140/visual/agc_tip_220_140.dae" />
+            </geometry>
+            <material name="">
+                <color rgba="0.0392156862745098 0.0392156862745098 0.0392156862745098 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://robotiq_description/meshes/robotiq_agc_tip_220_140/collision/agc_tip_220_140.stl" />
+            </geometry>
+        </collision>
+    </link>
     <link name="robotiq_2f140_right_outer_knuckle">
         <inertial>
             <origin rpy="0 0 0" xyz="0.000553430078305425 -0.0113324166394055 -2.069203532776E-08" />
@@ -843,6 +880,37 @@
             </geometry>
         </collision>
     </link>
+    <!--
+    NOTE: the macros defined in this file are NOT part of the public API of this
+          package. Users CANNOT rely on this file being available, or stored in
+          this location. Nor can they rely on the existence of the two macros.
+
+    Author: Ludovic Delval
+    Contributor: Felix Messmer
+  -->
+    <!-- Link representing the silicon finger tip pad -->
+    <link name="robotiq_2f140_right_fingertip_pad">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.00227643166121317 -0.00163641909670073 -0.000186465195632485" />
+            <mass value="0.0212636185801172" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://robotiq_description/meshes/robotiq_agc_tip_220_140/visual/agc_tip_220_140.dae" />
+            </geometry>
+            <material name="">
+                <color rgba="0.0392156862745098 0.0392156862745098 0.0392156862745098 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://robotiq_description/meshes/robotiq_agc_tip_220_140/collision/agc_tip_220_140.stl" />
+            </geometry>
+        </collision>
+    </link>
     <link name="robotiq_2f140_tcp" />
     <joint name="robotiq_2f140_tcp_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.24127678495 0 0" />
@@ -867,7 +935,7 @@
         <child link="robotiq_2f140_left_inner_knuckle" />
         <axis xyz="0 0 1" />
         <limit effort="176" lower="-3.14" upper="3.14" velocity="2.0" />
-        <mimik joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
+        <mimic joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="robotiq_2f140_left_inner_finger_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.078873 -0.035489 0" />
@@ -875,12 +943,17 @@
         <child link="robotiq_2f140_left_inner_finger" />
         <axis xyz="0 0 1" />
         <limit effort="176" lower="-3.14" upper="3.14" velocity="2.0" />
-        <mimik joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="-1" offset="0" />
+        <mimic joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="-1" offset="0" />
     </joint>
     <joint name="robotiq_2f140_left_fingertip_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.046015 0.018901 0" />
         <parent link="robotiq_2f140_left_inner_finger" />
         <child link="robotiq_2f140_left_fingertip" />
+    </joint>
+    <joint name="robotiq_2f140_left_fingertip_pad_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.00476 0 " />
+        <parent link="robotiq_2f140_left_fingertip" />
+        <child link="robotiq_2f140_left_fingertip_pad" />
     </joint>
     <joint name="robotiq_2f140_right_outer_knuckle_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.062905 -0.030601 0" />
@@ -888,7 +961,7 @@
         <child link="robotiq_2f140_right_outer_knuckle" />
         <axis xyz="0 0 1" />
         <limit effort="176" lower="-3.14" upper="3.14" velocity="2.0" />
-        <mimik joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
+        <mimic joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="robotiq_2f140_right_outer_finger_joint" type="fixed">
         <origin rpy="0 0 0" xyz="-0.0045554 -0.031421 0" />
@@ -901,7 +974,7 @@
         <child link="robotiq_2f140_right_inner_knuckle" />
         <axis xyz="0 0 1" />
         <limit effort="176" lower="-3.14" upper="3.14" velocity="2.0" />
-        <mimik joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
+        <mimic joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="robotiq_2f140_right_inner_finger_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.078873 -0.035489 0" />
@@ -909,13 +982,27 @@
         <child link="robotiq_2f140_right_inner_finger" />
         <axis xyz="0 0 1" />
         <limit effort="176" lower="-3.14" upper="3.14" velocity="2.0" />
-        <mimik joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="-1" offset="0" />
+        <mimic joint="robotiq_2f140_left_outer_knuckle_joint" multiplier="-1" offset="0" />
     </joint>
     <joint name="robotiq_2f140_right_fingertip_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.046015 0.018901 0" />
         <parent link="robotiq_2f140_right_inner_finger" />
         <child link="robotiq_2f140_right_fingertip" />
     </joint>
+    <joint name="robotiq_2f140_right_fingertip_pad_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.00476 0 " />
+        <parent link="robotiq_2f140_right_fingertip" />
+        <child link="robotiq_2f140_right_fingertip_pad" />
+    </joint>
+    <transmission name="robotiq_2f140_finger_joint_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="robotiq_2f140_finger_joint">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="robotiq_2f140_finger_joint_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
     <!-- TODO measure or calculate -->
     <link name="pipette_base">
         <inertial>
@@ -926,7 +1013,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/mimik/visual/pipette_simple.dae" />
+                <mesh filename="package://mimik_description/meshes/mimik/pipette_p200/visual/9k.dae" />
             </geometry>
             <material name="">
                 <color rgba="0.79216 0.81961 0.93333 1" />
@@ -935,7 +1022,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://mimik_description/meshes/mimik/collision/pipette.stl" />
+                <mesh filename="package://mimik_description/meshes/mimik/pipette_p200/collision/p36.stl" />
             </geometry>
         </collision>
     </link>
@@ -954,14 +1041,26 @@
     <joint name="wall_joint" type="fixed">
         <parent link="tabletop" />
         <child link="wall" />
-        <origin rpy="0.0 0.0 0.0" xyz="0 -0.5460999999999999 0.5588" />
+        <origin rpy="0.0 0.0 0.0" xyz="-0.5460999999999999 0 0.5588" />
     </joint>
     <joint name="ur3_mounting_plate_base_joint" type="fixed">
         <parent link="newport_tabletop" />
         <child link="ur3_mounting_plate_base" />
         <!-- Newport tabletop has matrix of 1 inch hole gap-->
-        <origin rpy="0.0 0.0 0.0" xyz="-0.254 -0.30479999999999996 0.0" />
+        <origin rpy="0.0 0.0 -1.5707963267948966" xyz="-0.0508 0.07619999999999999 0.0" />
     </joint>
+    <!-- <joint name="t100_adapter_joint" type="fixed"> -->
+    <!--   <parent link= "newport_tabletop" /> -->
+    <!--   <child link = "t100_adapter_base" /> -->
+    <!--   <!-\- Newport tabletop has matrix of 1 inch hole gap-\-> -->
+    <!--   <origin xyz="${-3.5 * 0.0254} ${-4.5 * 0.0254} 0.0" rpy="0.0 0.0 ${0.927295218}" /> -->
+    <!-- </joint> -->
+    <!-- <joint name="t100_joint" type="fixed"> -->
+    <!--   <parent link= "t100_adapter_base" /> -->
+    <!--   <child link = "t100_base" /> -->
+    <!--   <!-\- Newport tabletop has matrix of 1 inch hole gap-\-> -->
+    <!--   <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" /> -->
+    <!-- </joint> -->
     <joint name="ur3_base_joint" type="fixed">
         <parent link="ur3_mounting_plate_robotside" />
         <child link="ur3_base_link" />
@@ -986,7 +1085,8 @@
     <joint name="robotiq_2f140_base_joint" type="fixed">
         <parent link="dual_gripper_coupling_toolside_left" />
         <child link="robotiq_2f140_base_link" />
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+        <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
+        <origin rpy="0 0 0" xyz="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
     </joint>
     <joint name="pipette_base_joint" type="fixed">
         <parent link="dual_gripper_coupling_toolside_right" />
