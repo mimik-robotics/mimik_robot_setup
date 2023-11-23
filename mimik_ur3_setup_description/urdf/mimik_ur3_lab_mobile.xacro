@@ -64,7 +64,7 @@
   <xacro:ur3_robot
     prefix="ur3_"
     kinematics_parameters_file="$(find mimik_ur_launch)/etc/ur3-2017333047-calibration.yaml"
-    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_bbox.yaml"/>
+    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_vhacd_h16.yaml"/>
 
   <!-- FT-300 ur coupling + sensor -->
   <xacro:robotiq_fts_300_cpl_062
