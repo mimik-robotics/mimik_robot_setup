@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<robot name="mimik_ur3_station_portable" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:include filename="$(find mimik_description)/urdf/newport/sa2_30x30_macro.xacro"/>
+  <xacro:include filename="$(find mimik_description)/urdf/mimik/ur3_mounting_plate_macro.xacro"/>
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur3_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_fts_300_cpl_062/robotiq_fts_300_cpl_062_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_ft_300/robotiq_ft_300_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_apl_159_002/robotiq_agc_apl_159_002_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_140/inc/robotiq_2f_140_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/>
+
+  <!-- TCP calibration of the robotiq gripper (xyz)-->
+  <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
+
+  <!-- Table supporting the tabletop breadboard -->
+  <link name="tabletop">
+    <!-- <visual> -->
+    <!--   <origin xyz="0 0 0" rpy="0 0 0"/> -->
+    <!--   <geometry> -->
+    <!--     <box size="1.27 1.1176 0.0254"/> -->
+    <!--   </geometry> -->
+    <!--   <material name=""> -->
+    <!--     <color rgba="0.79216 0.81961 0.93333 1" /> -->
+    <!--   </material> -->
+    <!-- </visual> -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.1176 1.27 0.0254"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Wall -->
+  <link name="wall">
+    <!-- <visual> -->
+    <!--   <origin xyz="0 0 0" rpy="${-pi/2} 0 0"/> -->
+    <!--   <geometry> -->
+    <!--     <box size="1.27 1.1176 0.0254"/> -->
+    <!--   </geometry> -->
+    <!--   <material name=""> -->
+    <!--     <color rgba="0.79216 0.81961 0.93333 1" /> -->
+    <!--   </material> -->
+    <!-- </visual> -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 ${-pi/2} 0"/>
+      <geometry>
+        <box size="1.1176 1.27 0.0254"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Optical tabletop breadboard 30x30 inch -->
+  <xacro:newport_sa2_30x30
+    prefix="newport_"/>
+
+  <xacro:mimik_ur3_mounting_plate
+    prefix="ur3_mounting_plate_"/>
+
+  <!-- UR3 with S/N: 2017333047 -->
+  <xacro:ur3_robot
+    prefix="ur3_"
+    kinematics_parameters_file="$(find mimik_ur_launch)/etc/ur3-2017333047-calibration.yaml"
+    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_bbox.yaml"/>
+
+  <!-- FT-300 ur coupling + sensor -->
+  <xacro:robotiq_fts_300_cpl_062
+    prefix="robotiq_ft300_coupling_"
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_fts_300_cpl_062/visual_parameters_bbox.yaml"/>
+
+  <xacro:robotiq_ft_300
+    prefix="robotiq_ft300_"
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_ft_300/visual_parameters_bbox.yaml"/>
+
+  <!-- 2f-140 gripper + sillicon fingertip pads -->
+  <xacro:robotiq_2f_140
+    prefix="robotiq_2f140_"
+    visual_parameters_file="$(find robotiq_description)/config/robotiq_2f_140/visual_parameters_bbox.yaml"
+    fingertip_pad_macro_name="robotiq_agc_tip_220_140"
+    fingertip_pad_macro_attribute_visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_tip_220_140/visual_parameters.yaml"/>
+
+  <joint name="newport_base_joint" type="fixed">
+    <parent link= "tabletop" />
+    <child link = "newport_base" />
+    <!-- Offset by 1.5 inch for mounting foot height -->
+    <origin xyz="0 0 ${1.5 * 0.0254 + 0.0254/2}" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="wall_joint" type="fixed">
+    <parent link= "tabletop" />
+    <child link = "wall" />
+    <origin xyz="${-(22 * 0.0254 - 0.0254/2)} 0 ${44*0.0254/2}" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="ur3_mounting_plate_base_joint" type="fixed">
+    <parent link= "newport_tabletop" />
+    <child link = "ur3_mounting_plate_base" />
+    <!-- Newport tabletop has matrix of 1 inch hole gap-->
+    <origin xyz="${-12 * 0.0254} ${10 * 0.0254} 0.0" rpy="0.0 0.0 ${-pi/2}" />
+  </joint>
+
+  <joint name="ur3_base_joint" type="fixed">
+    <parent link= "ur3_mounting_plate_robotside" />
+    <child link = "ur3_base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="robotiq_fts300_coupling_joint" type="fixed">
+    <parent link= "ur3_flange" />
+    <child link = "robotiq_ft300_coupling_robotside" />
+    <!-- Align mounting plate to flange -->
+    <origin xyz="0.0 0.0 0.0" rpy="${pi} 0.0 0.0" />
+  </joint>
+
+  <joint name="robotiq_ft300_joint" type="fixed">
+    <parent link= "robotiq_ft300_coupling_toolside" />
+    <child link = "robotiq_ft300_robotside" />
+    <origin xyz="0.0 0.0 0.0" rpy="0 0.0 0.0" />
+  </joint>
+
+  <joint name="robotiq_2f140_base_joint" type="fixed">
+    <parent link= "robotiq_ft300_toolside" />
+    <child link = "robotiq_2f140_base_link" />
+    <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
+    <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" />
+  </joint>
+
+</robot>
