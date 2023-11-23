@@ -201,6 +201,10 @@ eef_gripper:
     - LazyPRMstar
     - SPARS
     - SPARStwo
+  enforce_joint_model_state_space: true
+  enforce_constrained_state_space: false
+  projection_evaluator: joints(ur3_shoulder_pan_joint, ur3_shoulder_lift_joint)
+  longest_valid_segment_fraction: 0.005
 eff_pipette:
   planner_configs:
     - AnytimePathShortening
@@ -227,3 +231,7 @@ eff_pipette:
     - LazyPRMstar
     - SPARS
     - SPARStwo
+  enforce_joint_model_state_space: false
+  enforce_constrained_state_space: false
+  projection_evaluator: joints(ur3_shoulder_pan_joint, ur3_shoulder_lift_joint)
+  longest_valid_segment_fraction: 0.005
