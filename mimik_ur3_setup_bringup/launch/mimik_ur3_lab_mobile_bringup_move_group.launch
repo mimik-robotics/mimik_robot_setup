@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- <include file="$(find mimik_ur3_lab_mobile_moveit_config)/launch/demo.launch"> -->
+  <!--   <!-\- <arg name="load_robot_description" value="true"/> -\-> -->
+  <!-- </include> -->
+
+  <!-- <param name="move_group/capabilities" value="move_group/ExecuteTaskSolutionCapability" /> -->
+
+  <include file="$(find mimik_ur3_lab_mobile_moveit_config)/launch/move_group.launch">
+    <arg name="capabilities" value="move_group/ExecuteTaskSolutionCapability"/>
+    <!-- <arg name="load_robot_description" value="true"/> -->
+  </include>
+
+  <!--  <include file="$(find mimik_ur3_lab_mobile_moveit_config)/launch/moveit_rviz.launch"> -->
+  <!--   <arg name="rviz_config" value="$(find mimik_ur3_lab_mobile_moveit_config)/launch/moveit.rviz"/> -->
+  <!-- </include> -->
+
+
+</launch>
