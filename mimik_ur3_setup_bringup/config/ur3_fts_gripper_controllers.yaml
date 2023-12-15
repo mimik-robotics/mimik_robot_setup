@@ -201,7 +201,9 @@ my_cartesian_force_controller:
 
   solver:
     error_scale: 0.5
-    iterations: 100
+    iterations: 5 # No effect with CartesianForceController
+    forward_dynamics:
+        link_mass: 0.1
 
   pd_gains:
     trans_x: {p: 0.05}
@@ -220,13 +222,13 @@ my_cartesian_force_controller:
 
   tool:
     # Mass of everything that's mounted after the sensor.
-    mass: 1.025
+    mass: 1.93 # 2.23 - 0.3
 
     # The center of mass in the ft_sensor_ref_link.
     # Take a measure and try to estimate that as good as possible.
-    com_x: 0.0
+    com_x: -0.036
     com_y: 0.0
-    com_z: 0.073
+    com_z: 0.0505 # 0.088 - 0.0375
 
 my_cartesian_compliance_controller:
   type: "position_controllers/CartesianComplianceController"
@@ -238,7 +240,10 @@ my_cartesian_compliance_controller:
   joints: *robot_joints
 
   solver:
-    error_scale: 0.0
+    error_scale: 0.5
+    iterations: 5
+    forward_dynamics:
+        link_mass: 0.1
 
   stiffness:
     trans_x: 100
@@ -265,10 +270,10 @@ my_cartesian_compliance_controller:
 
   tool:
     # Mass of everything that's mounted after the sensor.
-    mass: 2.23
+    mass: 1.93 # 2.23 - 0.3
 
     # The center of mass in the ft_sensor_ref_link.
     # Take a measure and try to estimate that as good as possible.
     com_x: -0.036
     com_y: 0.0
-    com_z: 0.088
+    com_z: 0.0505 # 0.088 - 0.0375

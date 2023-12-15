@@ -200,7 +200,10 @@ my_cartesian_force_controller:
   joints: *robot_joints
 
   solver:
-    error_scale: 1.0
+    error_scale: 0.5
+    iterations: 5 # No effect with CartesianForceController
+    forward_dynamics:
+        link_mass: 0.1
 
   pd_gains:
     trans_x: {p: 0.05}
@@ -210,22 +213,22 @@ my_cartesian_force_controller:
     rot_y: {p: 0.01}
     rot_z: {p: 0.01}
 
-  # Gravity should point towards the center of earth.
-  # In robot_base_link.
-  gravity:
-    x: 0
-    y: 0
-    z: -9.81
+  # #Gravity should point towards the center of earth.
+  # #In robot_base_link.
+  # gravity:
+  #   x: 0
+  #   y: 0
+  #   z: -9.81
 
-  tool:
-    # Mass of everything that's mounted after the sensor.
-    mass: 1.93
+  # tool:
+  #   # Mass of everything that's mounted after the sensor.
+  #   mass: 1.93 # 2.23 - 0.3
 
-    # The center of mass in the ft_sensor_ref_link.
-    # Take a measure and try to estimate that as good as possible.
-    com_x: -0.0325
-    com_y: 0.0
-    com_z: 0.067
+  #   # The center of mass in the ft_sensor_ref_link.
+  #   # Take a measure and try to estimate that as good as possible.
+  #   com_x: -0.036
+  #   com_y: 0.0
+  #   com_z: 0.0505 # 0.088 - 0.0375
 
 my_cartesian_compliance_controller:
   type: "position_controllers/CartesianComplianceController"
@@ -237,37 +240,40 @@ my_cartesian_compliance_controller:
   joints: *robot_joints
 
   solver:
-    error_scale: 0.0
+    error_scale: 0.5
+    iterations: 5
+    forward_dynamics:
+        link_mass: 0.1
 
   stiffness:
     trans_x: 100
-    trans_y: 100
-    trans_z: 100
-    rot_x: 100
-    rot_y: 100
-    rot_z: 100
+    trans_y: 5000
+    trans_z: 5000
+    rot_x: 20
+    rot_y: 20
+    rot_z: 20
 
   pd_gains:
     trans_x: {p: 0.05}
     trans_y: {p: 0.05}
     trans_z: {p: 0.05}
-    rot_x: {p: 1.5}
-    rot_y: {p: 1.5}
-    rot_z: {p: 1.5}
+    rot_x: {p: 0.01}
+    rot_y: {p: 0.01}
+    rot_z: {p: 0.01}
 
   # Gravity should point towards the center of earth.
   # In robot_base_link.
-  gravity:
-    x: 0
-    y: 0
-    z: -9.81
+  # gravity:
+  #   x: 0
+  #   y: 0
+  #   z: -9.81
 
-  tool:
-    # Mass of everything that's mounted after the sensor.
-    mass: 2.23
+  # tool:
+  #   # Mass of everything that's mounted after the sensor.
+  #   mass: 1.93 # 2.23 - 0.3
 
-    # The center of mass in the ft_sensor_ref_link.
-    # Take a measure and try to estimate that as good as possible.
-    com_x: -0.036
-    com_y: 0.0
-    com_z: 0.088
+  #   # The center of mass in the ft_sensor_ref_link.
+  #   # Take a measure and try to estimate that as good as possible.
+  #   com_x: -0.036
+  #   com_y: 0.0
+  #   com_z: 0.0505 # 0.088 - 0.0375
