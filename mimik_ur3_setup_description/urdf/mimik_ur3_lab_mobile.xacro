@@ -119,7 +119,7 @@
     <parent link= "newport_tabletop" />
     <child link = "ur3_mounting_plate_base" />
     <!-- Newport tabletop has matrix of 1 inch hole gap-->
-    <origin xyz="${-2 * 0.0254} ${12 * 0.0254} 0.0" rpy="0.0 0.0 ${-pi/2}" />
+    <origin xyz="${-2 * 0.0254} ${3 * 0.0254} 0.0" rpy="0.0 0.0 ${-pi/2}" />
   </joint>
 
   <joint name="ur3_base_joint" type="fixed">
