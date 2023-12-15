@@ -11,6 +11,9 @@
   <xacro:include filename="$(find mimik_description)/urdf/mimik/pipette_p200_macro.xacro"/>
   <xacro:include filename="$(find mimik_description)/urdf/mimik/biorad_t100_adapter_macro.xacro"/>
   <xacro:include filename="$(find mimik_description)/urdf/biorad/thermal_cycler_t100_open_macro.xacro"/>
+  <xacro:include filename="$(find mimik_description)/urdf/picknik/ur5_realsense_camera_adapter_macro.xacro"/>
+  <!-- <xacro:include filename="$(find mimik_description)/urdf/intel/realsense_d415_macro.xacro"/> -->
+  <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
 
   <!-- TCP calibration of the robotiq gripper (xyz)-->
   <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
@@ -80,6 +83,15 @@
     prefix="dual_gripper_coupling_"
     visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_apl_159_002/visual_parameters_bbox.yaml"/>
 
+  <!-- Realsense D415 adapter -->
+  <xacro:picknik_ur5_realsense_camera_adapter
+    prefix="camera_adapter_"/>
+
+  <!-- Realsense D415 camera -->
+  <xacro:sensor_d415 parent="camera_adapter_camera" name="camera" use_nominal_extrinsics="false" add_plug="true" use_mesh="true">
+    <origin xyz="${0.02005/2} 0 ${-0.023/2}" rpy="0 0 0"/>
+  </xacro:sensor_d415>
+
   <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
     prefix="robotiq_2f140_"
@@ -135,8 +147,20 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <joint name="robotiq_2f140_base_joint" type="fixed">
+  <joint name="camera_adapter_robotside_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_left" />
+    <child link = "camera_adapter_robotside" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <!-- <joint name="camera_backside_joint" type="fixed"> -->
+  <!--   <parent link= "camera_adapter_camera" /> -->
+  <!--   <child link = "camera_backside" /> -->
+  <!--   <origin xyz="0 0 0" rpy="0 0 0" /> -->
+  <!-- </joint> -->
+
+  <joint name="robotiq_2f140_base_joint" type="fixed">
+    <parent link= "camera_adapter_toolside" />
     <child link = "robotiq_2f140_base_link" />
     <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
     <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" />
