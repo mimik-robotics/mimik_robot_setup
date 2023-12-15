@@ -197,6 +197,9 @@ my_cartesian_force_controller:
   robot_base_link: "ur3_base_link"
   end_effector_link: "robotiq_2f140_tcp"
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
+  hand_frame_control: false # Indicate in which frame the target_wrench is given:
+                            #     True = given in end_effector_link coordinates,
+                            #     False = given in robot_base_link coordinates
   joints: *robot_joints
 
   solver:
@@ -237,6 +240,9 @@ my_cartesian_compliance_controller:
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
   compliance_ref_link: "robotiq_2f140_tcp"
   target_frame_topic: "target_frame"
+  hand_frame_control: false # Indicate in which frame the target_wrench is given:
+                            #     True = given in end_effector_link coordinates,
+                            #     False = given in robot_base_link coordinates
   joints: *robot_joints
 
   solver:
