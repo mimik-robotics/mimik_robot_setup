@@ -240,7 +240,7 @@ my_cartesian_compliance_controller:
   joints: *robot_joints
 
   solver:
-    error_scale: 0.5
+    error_scale: 0.1
     iterations: 5
     forward_dynamics:
         link_mass: 0.1
