@@ -168,7 +168,7 @@
 
   <joint name="pipette_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_right" />
-    <child link = "pipette_base" />
+    <child link = "pipette_robotside" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 </robot>
