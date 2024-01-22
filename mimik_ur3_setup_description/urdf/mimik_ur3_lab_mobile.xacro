@@ -112,14 +112,14 @@
   <joint name="wall_joint" type="fixed">
     <parent link= "tabletop" />
     <child link = "wall" />
-    <origin xyz="${-(22 * 0.0254 - 0.0254/2)} 0 ${44*0.0254/2}" rpy="0.0 0.0 0.0" />
+    <origin xyz="${(22 * 0.0254 - 0.0254/2)} 0 ${44*0.0254/2}" rpy="0.0 0.0 0.0" />
   </joint>
 
   <joint name="ur3_mounting_plate_base_joint" type="fixed">
     <parent link= "newport_tabletop" />
     <child link = "ur3_mounting_plate_base" />
     <!-- Newport tabletop has matrix of 1 inch hole gap-->
-    <origin xyz="${-2 * 0.0254} ${3 * 0.0254} 0.0" rpy="0.0 0.0 ${-pi/2}" />
+    <origin xyz="${2 * 0.0254} ${-3 * 0.0254}  0.0" rpy="0.0 0.0 ${pi/2}" />
   </joint>
 
   <joint name="ur3_base_joint" type="fixed">
