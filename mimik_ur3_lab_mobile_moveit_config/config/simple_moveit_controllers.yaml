@@ -16,7 +16,7 @@ controller_list:
       - ur3_wrist_1_joint
       - ur3_wrist_2_joint
       - ur3_wrist_3_joint
-  - name: eff_pipette_controller
+  - name: eef_pipette_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True

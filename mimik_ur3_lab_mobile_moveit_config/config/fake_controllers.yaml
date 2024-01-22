@@ -12,7 +12,7 @@ controller_list:
       - ur3_wrist_1_joint
       - ur3_wrist_2_joint
       - ur3_wrist_3_joint
-  - name: fake_eff_pipette_controller
+  - name: fake_eef_pipette_controller
     type: $(arg fake_execution_type)
     joints:
       - ur3_shoulder_pan_joint
@@ -26,5 +26,5 @@ initial:  # Define initial robot poses per group
     pose: open
   - group: eef_gripper
     pose: home
-  - group: eff_pipette
+  - group: eef_pipette
     pose: home

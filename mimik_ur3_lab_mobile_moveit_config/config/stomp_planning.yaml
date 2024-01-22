@@ -76,8 +76,8 @@ stomp/eef_gripper:
         publish_intermediate: True
         marker_topic: stomp_trajectory
         marker_namespace: optimized
-stomp/eff_pipette:
-  group_name: eff_pipette
+stomp/eef_pipette:
+  group_name: eef_pipette
   optimization:
     num_timesteps: 60
     num_iterations: 40

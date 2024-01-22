@@ -6,6 +6,6 @@
 
   <!-- Load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" args="gripper_controller eef_gripper_controller eff_pipette_controller "/>
+    output="screen" args="gripper_controller eef_gripper_controller eef_pipette_controller "/>
 
 </launch>
