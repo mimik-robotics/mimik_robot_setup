@@ -91,6 +91,8 @@
   <xacro:sensor_d415 parent="camera_adapter_camera" name="camera" use_nominal_extrinsics="false" add_plug="true" use_mesh="true">
     <origin xyz="${0.02005/2} 0 ${-0.023/2}" rpy="0 0 0"/>
   </xacro:sensor_d415>
+  <link name="pipette_tcp" />
+
 
   <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
@@ -169,6 +171,16 @@
   <joint name="pipette_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_right" />
     <child link = "pipette_robotside" />
+    <!-- Calibrated on Jan 21 2024 -->
+    <!-- Offset the hole pipette CAD wrt. the calibrated tcp of the tip -->
+    <origin xyz="${0.25519783013035285 - 0.253442} -0.00026130058471244416 -0.0008577228691093923" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <!-- Conveniance frame -->
+  <joint name="pipette_tcp_joint" type="fixed">
+    <parent link= "pipette_tip" />
+    <child link = "pipette_tcp" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
+
 </robot>
