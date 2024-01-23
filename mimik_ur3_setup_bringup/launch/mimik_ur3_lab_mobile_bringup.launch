@@ -10,8 +10,13 @@
   <include file="$(find mimik_ur_launch)/launch/ur3-2017333047.launch">
     <arg name="controller_config_file" value="$(find mimik_ur3_setup_bringup)/config/ur3_controllers.yaml"/>
     <!-- <arg name="controllers" default="joint_state_controller scaled_pos_joint_traj_controller speed_scaling_state_controller force_torque_sensor_controller robot_status_controller" doc="Controllers that are activated by default."/> -->
-    <arg name="controllers" default="joint_state_controller  robot_status_controller" doc="Controllers that are activated by default."/>
-    <arg name="stopped_controllers" default="pos_joint_traj_controller joint_group_vel_controller my_cartesian_force_controller my_cartesian_compliance_controller" doc="Controllers that are initally loaded, but not started."/>
+    <arg name="controllers" default="joint_state_controller robot_status_controller" doc="Controllers that are activated by default."/>
+    <arg name="stopped_controllers" doc="Controllers that are initally loaded, but not started."
+         default="pos_joint_traj_controller
+                  joint_group_vel_controller
+                  gripper_my_cartesian_force_controller
+                  pipette_my_cartesian_force_controller
+                  my_cartesian_compliance_controller"/>
     <arg name="robot_ip" default="192.168.0.20" doc="IP address by which the robot can be reached."/>
   </include>
 
