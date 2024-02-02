@@ -11,60 +11,60 @@ joint_limits:
   robotiq_2f140_left_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
-  robotiq_2f140_left_inner_knuckle_joint:
+    has_acceleration_limits: true
+    max_acceleration: 2
+  robotiq_2f142_left_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
-  robotiq_2f140_left_outer_knuckle_joint:
+    has_acceleration_limits: true
+    max_acceleration: 2
+  robotiq_2f142_left_outer_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
-  robotiq_2f140_right_inner_finger_joint:
+    has_acceleration_limits: true
+    max_acceleration: 2
+  robotiq_2f142_right_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
-  robotiq_2f140_right_inner_knuckle_joint:
+    has_acceleration_limits: true
+    max_acceleration: 2
+  robotiq_2f142_right_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
-  robotiq_2f140_right_outer_knuckle_joint:
+    has_acceleration_limits: true
+    max_acceleration: 2
+  robotiq_2f142_right_outer_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 2
   ur3_elbow_joint:
     has_velocity_limits: true
     max_velocity: 3.141592653589793
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626 # 800 deg/s^2
   ur3_shoulder_lift_joint:
     has_velocity_limits: true
     max_velocity: 3.141592653589793
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626
   ur3_shoulder_pan_joint:
     has_velocity_limits: true
     max_velocity: 3.141592653589793
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626
   ur3_wrist_1_joint:
     has_velocity_limits: true
     max_velocity: 6.283185307179586
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626
   ur3_wrist_2_joint:
     has_velocity_limits: true
     max_velocity: 6.283185307179586
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626
   ur3_wrist_3_joint:
     has_velocity_limits: true
     max_velocity: 6.283185307179586
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_acceleration_limits: true
+    max_acceleration: 13.9626
