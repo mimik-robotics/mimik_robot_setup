@@ -16,7 +16,8 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
 
   <!-- TCP calibration of the robotiq gripper (xyz)-->
-  <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" />
+  <!-- <xacro:property name="tcp_calibration_gripper" value="0.0010977079105917165 -0.00047849967130053628 -2.3860966923898729e-05" /> -->
+  <xacro:property name="tcp_calibration_gripper" value="0.0 0.0 0.0" />
 
   <!-- Table supporting the tabletop breadboard -->
   <link name="tabletop">
