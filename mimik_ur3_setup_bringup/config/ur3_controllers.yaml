@@ -200,7 +200,6 @@ gripper_my_cartesian_force_controller:
   hand_frame_control: false # Indicate in which frame the target_wrench is given:
                             #     True = given in end_effector_link coordinates,
                             #     False = given in robot_base_link coordinates
-  publish_state_feedback: true
   # end_effector_transform_offset:
   #   x: 0
   #   y: 0
@@ -217,6 +216,7 @@ gripper_my_cartesian_force_controller:
     iterations: 5 # No effect with CartesianForceController
     forward_dynamics:
         link_mass: 0.1
+    publish_state_feedback: true
 
   pd_gains:
     trans_x: {p: 0.05}
@@ -251,7 +251,6 @@ pipette_my_cartesian_force_controller:
   hand_frame_control: false # Indicate in which frame the target_wrench is given:
                             #     True = given in end_effector_link coordinates,
                             #     False = given in robot_base_link coordinates
-  publish_state_feedback: true
   # E.g. Apply offset of the tip wrt. the pipette tcp
   end_effector_transform_offset:
     px: 0.045
@@ -268,6 +267,7 @@ pipette_my_cartesian_force_controller:
     iterations: 5 # No effect with CartesianForceController
     forward_dynamics:
         link_mass: 0.1
+    publish_state_feedback: true
 
   pd_gains:
     trans_x: {p: 0.01}
