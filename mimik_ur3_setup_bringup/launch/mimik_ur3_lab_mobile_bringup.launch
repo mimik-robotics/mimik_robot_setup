@@ -25,10 +25,7 @@
   </include>
 
   <!-- robotiq 2f140 driver -->
-  <arg name="gripper_name" default="robotiq_2f140" />
-
   <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
-    <arg name="gripper_name" default="$(arg gripper_name)" />
     <arg name="slave_number" default="9" />
     <arg name="activate" default="True" />
     <arg name="port" default="/dev/robotiq_2f_140" />
@@ -36,7 +33,6 @@
 
   <!-- robotiq 2f140 action server -->
   <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
-    <arg name="gripper_name" default="$(arg gripper_name)" />
   </include>
 
   <!-- robotiq 2f140 action client -->
