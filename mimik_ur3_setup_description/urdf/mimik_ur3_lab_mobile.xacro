@@ -171,7 +171,7 @@
 
   <joint name="pipette_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_right" />
-    <child link = "pipette_robotside" />
+    <child link = "pipette_base" />
     <!-- Calibrated on Jan 21 2024 -->
     <!-- Offset the hole pipette CAD wrt. the calibrated tcp of the tip -->
     <origin xyz="${0.25519783013035285 - 0.253442} -0.00026130058471244416 -0.0008577228691093923" rpy="0.0 0.0 0.0" />
