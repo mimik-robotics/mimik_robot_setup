@@ -35,14 +35,6 @@
   <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
   </include>
 
-  <!-- robotiq 2f140 action client -->
-  <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_client.launch">
-    <arg name="gripper_name" default="$(arg gripper_name)" />
-    <arg name="position" value="0.792" />
-    <arg name="max_retry" value="5" />
-    <arg name="timeout" value="2" />
-  </include>
-
   <!-- robotiq ft300 -->
   <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
     <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
