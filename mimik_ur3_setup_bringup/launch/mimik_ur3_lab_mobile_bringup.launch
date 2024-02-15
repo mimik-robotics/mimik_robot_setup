@@ -42,8 +42,10 @@
   <!--   <param name="serial_id" type="str" value="robotiq_ft_300"/> -->
   <!-- </node> -->
 
- <node pkg="tf2_ros" type="static_transform_publisher" name="camera_link_broadcaster"
-      args="-0.0885371 -0.0804488 0.058979   -0.0586057 -0.381219 -0.0279884 0.922201 ur3_wrist_3_link camera_color_optical_frame" />
+  <!-- realsense ds415 driver -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="publish_tf"                default="false"/>
+  </include>
 
 
   <!-- <node name="pipette_200ul" pkg="robotic_tool" type="robotic_tool_pipette_tool_action_server" output="screen"> -->
