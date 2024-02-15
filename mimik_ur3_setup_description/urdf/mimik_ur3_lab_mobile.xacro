@@ -98,6 +98,10 @@
     <origin xyz="${0.02005/2} 0 ${-0.023/2}" rpy="0 0 0"/>
   </xacro:sensor_d415>
 
+
+  <link name="camera_color_optical_frame"/>
+
+
   <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
     prefix="robotiq_2f140_"
@@ -165,6 +169,16 @@
     <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
     <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" />
   </joint>
+
+
+  <!-- Calibrated -->
+  <joint name="camera_color_optical_frame_joint" type="fixed">
+    <parent link= "ur3_wrist_3_link" />
+    <child link = "camera_color_optical_frame" />
+
+   <origin xyz="-0.0885371 -0.0804488 0.058979" rpy="2.95938 -2.36642 3.00636" />
+  </joint>
+
 
   <!-- <joint name="robotiq_2f140_base_joint" type="fixed"> -->
   <!--   <parent link= "dual_gripper_coupling_toolside_left" /> -->
