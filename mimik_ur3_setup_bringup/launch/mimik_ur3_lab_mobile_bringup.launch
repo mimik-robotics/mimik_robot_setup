@@ -2,6 +2,7 @@
 <launch>
 
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
+  <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
 
   <!-- robot_description -->
   <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab_mobile.launch"/>
@@ -43,10 +44,23 @@
   <!-- </node> -->
 
   <!-- realsense ds415 driver -->
-  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-    <arg name="publish_tf"                default="false"/>
-  </include>
+  <group if="$(arg calibrate_camera)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="publish_tf"                default="true"/>
+    </include>
+  </group>
 
+  <group unless="$(arg calibrate_camera)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="publish_tf"                default="false"/>
+    </include>
+  </group>>
+
+  <!-- Launch the robot move_group in calibration mode-->
+  <group if="$(arg calibrate_camera)">
+    <include file="$(find mimik_ur3_lab_mobile_moveit_config)/launch/move_group.launch">
+    </include>
+  </group>
 
   <!-- <node name="pipette_200ul" pkg="robotic_tool" type="robotic_tool_pipette_tool_action_server" output="screen"> -->
   <!--   <param name="baudrate" type="int" value="1000000"/> -->
@@ -60,12 +74,18 @@
 
     <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world tabletop" />
 
-    <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.rviz" />
-    <!-- <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.hand_to_eye_calibration.rviz" /> -->
 
-    <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-          args="$(arg command_args)" output="screen">
-    </node>
+    <group if="$(arg calibrate_camera)">
+      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.hand_to_eye_calibration.rviz" />
+      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+            args="$(arg command_args)" output="screen"/>
+    </group>
+    <group unless="$(arg calibrate_camera)">
+      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.rviz" />
+      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+            args="$(arg command_args)" output="screen"/>
+    </group>
+
   </group>
 
 </launch>
