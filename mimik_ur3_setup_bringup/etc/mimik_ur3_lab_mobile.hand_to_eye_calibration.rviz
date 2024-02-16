@@ -6,9 +6,12 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotModel1
         - /RobotModel1/Links1
         - /HandEyeCalibration1
         - /Image1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.6676470637321472
     Tree Height: 140
   - Class: rviz/Selection
@@ -78,6 +81,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_color_optical_frame_tcp:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -319,18 +326,18 @@ Visualization Manager:
       eef: ur3_wrist_3_link
       group: eef_gripper
       image_topic: /camera/color/image_raw
-      longest board side (m): 0.2135824818
-      margin size (px): 128
+      longest board side (m): 0.118657
+      margin size (px): 640
       marker border (bits): 1
       marker size (px): 206
-      measured marker size (m): 0.01909635036
-      object: handeye_target
+      measured marker size (m): 0.019096
+      object: ""
       sensor: camera_color_optical_frame
       sensor_mount_type: 1
       solver: crigroup/Daniilidis1999
       square size (px): 256
-      squares, X: 9
-      squares, Y: 5
+      squares, X: 5
+      squares, Y: 4
       target_type: HandEyeTarget/Charuco
     - Class: rviz/Image
       Enabled: true
@@ -343,6 +350,209 @@ Visualization Manager:
       Queue Size: 2
       Transport Hint: raw
       Unreliable: false
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        base:
+          Value: false
+        camera_adapter_camera:
+          Value: false
+        camera_adapter_robotside:
+          Value: false
+        camera_adapter_toolside:
+          Value: false
+        camera_bottom_screw_frame:
+          Value: false
+        camera_color_frame:
+          Value: false
+        camera_color_optical_frame:
+          Value: true
+        camera_color_optical_frame_tcp:
+          Value: true
+        camera_depth_frame:
+          Value: false
+        camera_depth_optical_frame:
+          Value: false
+        camera_link:
+          Value: false
+        camera_usb_plug_link:
+          Value: false
+        dual_gripper_coupling_robotside:
+          Value: false
+        dual_gripper_coupling_toolside_left:
+          Value: false
+        dual_gripper_coupling_toolside_right:
+          Value: false
+        newport_base:
+          Value: false
+        newport_tabletop:
+          Value: false
+        pipette_base:
+          Value: false
+        pipette_tcp:
+          Value: false
+        pipette_tip:
+          Value: false
+        robotiq_2f140_base_link:
+          Value: false
+        robotiq_2f140_left_fingertip:
+          Value: false
+        robotiq_2f140_left_fingertip_pad:
+          Value: false
+        robotiq_2f140_left_inner_finger:
+          Value: false
+        robotiq_2f140_left_inner_knuckle:
+          Value: false
+        robotiq_2f140_left_outer_finger:
+          Value: false
+        robotiq_2f140_left_outer_knuckle:
+          Value: false
+        robotiq_2f140_right_fingertip:
+          Value: false
+        robotiq_2f140_right_fingertip_pad:
+          Value: false
+        robotiq_2f140_right_inner_finger:
+          Value: false
+        robotiq_2f140_right_inner_knuckle:
+          Value: false
+        robotiq_2f140_right_outer_finger:
+          Value: false
+        robotiq_2f140_right_outer_knuckle:
+          Value: false
+        robotiq_2f140_tcp:
+          Value: false
+        robotiq_2f140_tcp_cad:
+          Value: false
+        robotiq_ft300_coupling_robotside:
+          Value: false
+        robotiq_ft300_coupling_toolside:
+          Value: false
+        robotiq_ft300_frame_id:
+          Value: false
+        robotiq_ft300_robotside:
+          Value: false
+        robotiq_ft300_toolside:
+          Value: false
+        tabletop:
+          Value: false
+        tool0_controller:
+          Value: false
+        ur3_base:
+          Value: false
+        ur3_base_link:
+          Value: false
+        ur3_base_link_inertia:
+          Value: false
+        ur3_flange:
+          Value: false
+        ur3_forearm_link:
+          Value: false
+        ur3_mounting_plate_base:
+          Value: false
+        ur3_mounting_plate_robotside:
+          Value: false
+        ur3_shoulder_link:
+          Value: false
+        ur3_tool0:
+          Value: false
+        ur3_upper_arm_link:
+          Value: false
+        ur3_wrist_1_link:
+          Value: false
+        ur3_wrist_2_link:
+          Value: false
+        ur3_wrist_3_link:
+          Value: false
+        wall:
+          Value: false
+        world:
+          Value: false
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base:
+          tool0_controller:
+            {}
+        world:
+          tabletop:
+            newport_base:
+              newport_tabletop:
+                ur3_mounting_plate_base:
+                  ur3_mounting_plate_robotside:
+                    ur3_base_link:
+                      ur3_base:
+                        {}
+                      ur3_base_link_inertia:
+                        ur3_shoulder_link:
+                          ur3_upper_arm_link:
+                            ur3_forearm_link:
+                              ur3_wrist_1_link:
+                                ur3_wrist_2_link:
+                                  ur3_wrist_3_link:
+                                    camera_color_optical_frame:
+                                      {}
+                                    camera_color_optical_frame_tcp:
+                                      {}
+                                    ur3_flange:
+                                      robotiq_ft300_coupling_robotside:
+                                        robotiq_ft300_coupling_toolside:
+                                          robotiq_ft300_robotside:
+                                            robotiq_ft300_frame_id:
+                                              robotiq_ft300_toolside:
+                                                dual_gripper_coupling_robotside:
+                                                  dual_gripper_coupling_toolside_left:
+                                                    camera_adapter_robotside:
+                                                      camera_adapter_camera:
+                                                        camera_bottom_screw_frame:
+                                                          camera_link:
+                                                            camera_color_frame:
+                                                              {}
+                                                            camera_depth_frame:
+                                                              camera_depth_optical_frame:
+                                                                {}
+                                                            camera_usb_plug_link:
+                                                              {}
+                                                      camera_adapter_toolside:
+                                                        robotiq_2f140_base_link:
+                                                          robotiq_2f140_left_inner_knuckle:
+                                                            {}
+                                                          robotiq_2f140_left_outer_knuckle:
+                                                            robotiq_2f140_left_outer_finger:
+                                                              robotiq_2f140_left_inner_finger:
+                                                                robotiq_2f140_left_fingertip:
+                                                                  robotiq_2f140_left_fingertip_pad:
+                                                                    {}
+                                                          robotiq_2f140_right_inner_knuckle:
+                                                            {}
+                                                          robotiq_2f140_right_outer_knuckle:
+                                                            robotiq_2f140_right_outer_finger:
+                                                              robotiq_2f140_right_inner_finger:
+                                                                robotiq_2f140_right_fingertip:
+                                                                  robotiq_2f140_right_fingertip_pad:
+                                                                    {}
+                                                          robotiq_2f140_tcp:
+                                                            {}
+                                                    robotiq_2f140_tcp_cad:
+                                                      {}
+                                                  dual_gripper_coupling_toolside_right:
+                                                    pipette_base:
+                                                      pipette_tip:
+                                                        pipette_tcp:
+                                                          {}
+                                      ur3_tool0:
+                                        {}
+            wall:
+              {}
+      Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
@@ -388,9 +598,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.08039847761392593
+      Pitch: 0.26539844274520874
       Target Frame: <Fixed Frame>
-      Yaw: 3.163588047027588
+      Yaw: 3.928589344024658
     Saved: ~
 Window Geometry:
   Displays:
