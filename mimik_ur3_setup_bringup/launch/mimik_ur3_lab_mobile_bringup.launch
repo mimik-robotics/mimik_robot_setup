@@ -37,11 +37,11 @@
   </include>
 
   <!-- robotiq ft300 -->
-  <!-- <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen"> -->
-  <!--   <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/> -->
-  <!--   <!-\- /dev/{serial_id} -\-> -->
-  <!--   <param name="serial_id" type="str" value="robotiq_ft_300"/> -->
-  <!-- </node> -->
+  <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+    <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
+    <!-- /dev/{serial_id} -->
+    <param name="serial_id" type="str" value="robotiq_ft_300"/>
+  </node>
 
   <!-- realsense ds415 driver -->
   <group if="$(arg calibrate_camera)">
