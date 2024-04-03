@@ -69,6 +69,10 @@
   <!-- </node> -->
 
 
+  <!-- Cartesian Feedback -->
+  <include file="$(find task_space_feedback)/launch/task_space_feedback_server.launch"/>
+
+
   <!-- start rviz (optional) -->
   <group if="$(arg use_rviz)">
 
