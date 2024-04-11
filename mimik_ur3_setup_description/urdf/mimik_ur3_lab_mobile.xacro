@@ -10,7 +10,7 @@
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_agc_tip_220_140/robotiq_agc_tip_220_140_macro.xacro"/>
   <xacro:include filename="$(find mimik_description)/urdf/mimik/pipette_p200_macro.xacro"/>
   <xacro:include filename="$(find mimik_description)/urdf/mimik/biorad_t100_adapter_macro.xacro"/>
-  <xacro:include filename="$(find mimik_description)/urdf/biorad/thermal_cycler_t100_open_macro.xacro"/>
+  <xacro:include filename="$(find mimik_description)/urdf/biorad/thermocycler_t100_open_macro.xacro"/>
   <xacro:include filename="$(find mimik_description)/urdf/picknik/ur5_realsense_camera_adapter_macro.xacro"/>
   <!-- <xacro:include filename="$(find mimik_description)/urdf/intel/realsense_d415_macro.xacro"/> -->
   <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />

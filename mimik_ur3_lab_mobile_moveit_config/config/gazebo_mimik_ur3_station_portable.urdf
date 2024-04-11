@@ -80,7 +80,7 @@
     </joint>
     <!-- <xacro:mimik_biorad_t100_adapter -->
     <!--   prefix="t100_adapter_"/> -->
-    <!-- <xacro:biorad_thermal_cycler_t100_open -->
+    <!-- <xacro:biorad_thermocycler_t100_open -->
     <!--   prefix="t100_"/> -->
     <link name="ur3_mounting_plate_base">
         <inertial>
