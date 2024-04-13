@@ -197,18 +197,9 @@ gripper_my_cartesian_force_controller:
   robot_base_link: "ur3_base_link"
   end_effector_link: "robotiq_2f140_tcp"
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
-  hand_frame_control: true # Indicate in which frame the target_wrench is given:
+  hand_frame_control: false # Indicate in which frame the target_wrench is given:
                             #     True = given in end_effector_link coordinates,
                             #     False = given in robot_base_link coordinates
-  # end_effector_offset:
-  #   x: 0
-  #   y: 0
-  #   z: 0
-  #   # Rotate -pi/2 wrt. the end_effector_link Y axis
-  #   qx: 0
-  #   qy: -0.7071068
-  #   qz: 0
-  #   qw: 0.7071068
   joints: *robot_joints
 
   solver:
@@ -217,7 +208,6 @@ gripper_my_cartesian_force_controller:
     forward_dynamics:
         link_mass: 0.1
     publish_state_feedback: true
-    state_feedback_hand_frame: true
 
   pd_gains:
     trans_x: {p: 0.05}
@@ -252,15 +242,6 @@ pipette_my_cartesian_force_controller:
   hand_frame_control: false # Indicate in which frame the target_wrench is given:
                             #     True = given in end_effector_link coordinates,
                             #     False = given in robot_base_link coordinates
-  # E.g. Apply offset of the tip wrt. the pipette tcp
-  end_effector_offset:
-    px: 0.045
-    py: 0
-    pz: 0
-    qx: 0
-    qy: 0
-    qz: 0
-    qw: 1.0
   joints: *robot_joints
 
   solver:
