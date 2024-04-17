@@ -250,9 +250,8 @@ pipette_my_cartesian_force_controller:
     forward_dynamics:
         link_mass: 0.1
     publish_state_feedback: true
-    state_feedback_hand_frame: true # Indicate in which frame the target_wrench is given:
-                                    #     True = given in end_effector_link coordinates at startup,
-  pd_gains:                         #     False = given in robot_base_link coordinates
+
+  pd_gains:
     trans_x: {p: 0.01}
     trans_y: {p: 0.01}
     trans_z: {p: 0.025}
