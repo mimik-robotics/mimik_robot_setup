@@ -199,19 +199,29 @@
   <joint name="pipette_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_right" />
     <child link = "pipette_base" />
-    <!-- Calibrated on Jan 21 2024 -->
-    <!-- Offset the hole pipette CAD wrt. the calibrated tcp of the tip -->
-    <origin xyz="${0.25519783013035285 - 0.253442} -0.00026130058471244416 -0.0008577228691093923" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 0.0 0.0" rpy="${pi} 0.0 0.0" />
   </joint>
 
 
+  <!-- Sanity Check -->
+  <!-- <link name="pipette_tcp_test"/> -->
+  <!-- <joint name="lol" type="fixed"> -->
+  <!--   <parent link= "ur3_tool0" /> -->
+  <!--   <child link = "pipette_tcp_test" /> -->
+  <!--   <origin xyz="0.223439 -0.00046209 0.243363" rpy="0.0 0.0 0.0" /> -->
+  <!-- </joint> -->
 
 
   <!-- Conveniance frame -->
   <joint name="pipette_tcp_joint" type="fixed">
     <parent link= "pipette_tip" />
     <child link = "pipette_tcp" />
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <!-- Calibrated on Apr 18 2024 with Tool Point Calibration ROS package -->
+    <!-- Calibration captured 4 tool poses (out of 4 requested). Computing calibration... -->
+    <!-- Calibrated tcp (meters in xyz): [   0.223439 -0.00046209    0.243363] from ur3_tool0 -->
+    <!-- Touch point (meters in xyz): [-0.240945  0.241088 0.0427421] in frame newport_tabletop -->
+    <!-- Average residual: 1.43073e-07 -->
+    <origin xyz="0.0006228806938889386 0.0011144002871499858 -0.00046208999999987344" rpy="0.0 0.0 0.0" />
   </joint>
 
 </robot>
