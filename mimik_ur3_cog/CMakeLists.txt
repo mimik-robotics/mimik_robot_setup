@@ -47,6 +47,8 @@ add_library(${PROJECT_NAME}
 add_executable(pipette_tool_cog src/pipette_tool_cog.cpp)
 target_link_libraries(pipette_tool_cog ${PROJECT_NAME} ${catkin_LIBRARIES})
 
+add_executable(ur3_tool_cog src/ur3_tool_cog.cpp)
+target_link_libraries(ur3_tool_cog ${PROJECT_NAME} ${catkin_LIBRARIES})
 
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -55,6 +57,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
 install(TARGETS
   ${PROJECT_NAME}
   pipette_tool_cog
+  ur3_tool_cog
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
