@@ -17,5 +17,7 @@
   <depend>geometry_msgs</depend>
   <depend>eigen_conversions</depend>
   <depend>kdl_conversions</depend>
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning_interface</depend>
 
 </package>

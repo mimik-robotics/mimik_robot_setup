@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   eigen_conversions
   kdl_conversions
+  moveit_core
+  moveit_ros_planning_interface
 )
 
 catkin_package(
@@ -23,6 +25,8 @@ catkin_package(
     geometry_msgs
     eigen_conversions
     kdl_conversions
+    moveit_core
+    moveit_ros_planning_interface
   DEPENDS
     EIGEN3
     orocos_kdl
@@ -37,6 +41,7 @@ include_directories(
 
 add_library(${PROJECT_NAME}
   src/cog.cpp
+  src/transform_pose.cpp
 )
 
 add_executable(pipette_tool_cog src/pipette_tool_cog.cpp)
