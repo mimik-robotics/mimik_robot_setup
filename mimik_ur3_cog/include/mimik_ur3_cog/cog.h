@@ -1,5 +1,8 @@
 #pragma once
 
+#include <geometry_msgs/Inertia.h>
+#include <geometry_msgs/InertiaStamped.h>
+
 #include <Eigen/Geometry>
 
 namespace mimik {
@@ -29,6 +32,10 @@ struct COG
  *      i = 1
  */
 COG computeCOG(const std::vector<COG>& cog_vec);
+
+COG computeCOG(const std::vector<geometry_msgs::InertiaStamped>& inertia_vec, const std::string& to_frame);
+
+void COGToInertia(const COG& cog, geometry_msgs::Inertia& inertia);
 
 void print(const COG& cog);
 
