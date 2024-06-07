@@ -24,6 +24,7 @@ int main(int argc, char** argv)
 
   inertia_vec.emplace_back(getFT300COG());
   inertia_vec.emplace_back(getDualGripperAdapterCOG());
+  inertia_vec.emplace_back(getCameraAdapterCOG());
   inertia_vec.emplace_back(getCameraCOG());
   inertia_vec.emplace_back(get2F140COG());
   inertia_vec.emplace_back(getPipetteCOG());
@@ -76,16 +77,27 @@ geometry_msgs::InertiaStamped get2F140COG()
   geometry_msgs::InertiaStamped inertia;
   inertia.header.frame_id = "robotiq_2f140_base_link";
 
-  inertia.inertia.com.x = 0.0755;
+  // From Robotiq 2019/03/29 instruction manual
+  inertia.inertia.com.x = 0.073;
   inertia.inertia.com.y = 0;
   inertia.inertia.com.z = 0;
-  inertia.inertia.m = 1.013;
+  inertia.inertia.m = 1.025;
 
   return inertia;
 }
 
 geometry_msgs::InertiaStamped getCameraAdapterCOG()
 {
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "camera_adapter_robotside";
+
+  // approximate to center of camera
+  inertia.inertia.com.x = 0.002614;
+  inertia.inertia.com.y = 0;
+  inertia.inertia.com.z = 0.02117;
+  inertia.inertia.m = 0.02953;
+
+  return inertia;
 }
 
 geometry_msgs::InertiaStamped getCameraCOG()
