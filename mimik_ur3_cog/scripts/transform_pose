@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+# Transform a given input pose from one fixed frame to another
+import rospy
+from geometry_msgs.msg import Pose
+
+import tf2_ros
+import tf2_geometry_msgs  # **Do not use geometry_msgs. Use this instead for PoseStamped
+
+import numpy as np
+
+def euler_from_quaternion(quaternion):
+    """
+    Converts quaternion (w in last place) to euler roll, pitch, yaw
+    quaternion = [x, y, z, w]
+    Bellow should be replaced when porting for ROS 2 Python tf_conversions is done.
+    """
+    x = quaternion.x
+    y = quaternion.y
+    z = quaternion.z
+    w = quaternion.w
+
+    sinr_cosp = 2 * (w * x + y * z)
+    cosr_cosp = 1 - 2 * (x * x + y * y)
+    roll = np.arctan2(sinr_cosp, cosr_cosp)
+
+    sinp = 2 * (w * y - z * x)
+    pitch = np.arcsin(sinp)
+
+    siny_cosp = 2 * (w * z + x * y)
+    cosy_cosp = 1 - 2 * (y * y + z * z)
+    yaw = np.arctan2(siny_cosp, cosy_cosp)
+
+    return roll, pitch, yaw
+
+
+
+def transform_pose(input_pose, from_frame, to_frame):
+
+    # **Assuming /tf2 topic is being broadcasted
+    tf_buffer = tf2_ros.Buffer()
+    listener = tf2_ros.TransformListener(tf_buffer)
+
+    pose_stamped = tf2_geometry_msgs.PoseStamped()
+    pose_stamped.pose = input_pose
+    pose_stamped.header.frame_id = from_frame
+    pose_stamped.header.stamp = rospy.Time(0)
+
+    try:
+        # ** It is important to wait for the listener to start listening. Hence the rospy.Duration(1)
+        output_pose_stamped = tf_buffer.transform(pose_stamped, to_frame, rospy.Duration(1))
+        return output_pose_stamped.pose
+
+    except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+        raise
+
+
+# Test Case
+rospy.init_node("transform_test")
+
+
+my_pose = Pose()
+my_pose.position.x = 0
+my_pose.position.y = 0
+my_pose.position.z = 0
+my_pose.orientation.x = 0
+my_pose.orientation.y = 0
+my_pose.orientation.z = 0
+my_pose.orientation.w = 1
+
+# RC 6,9
+#my_pose = Pose()
+#my_pose.position.x = -0.2413
+#my_pose.position.y = 0.1651
+#my_pose.position.z = 0.04205
+#my_pose.orientation.x = 0
+#my_pose.orientation.y = 0
+#my_pose.orientation.z = 0
+#my_pose.orientation.w = 1
+
+# 3rd RC
+#my_pose = Pose()
+#my_pose.position.x = -0.2413
+#my_pose.position.y = 0.2413
+#my_pose.position.z = 0.04205
+#my_pose.orientation.x = 0
+#my_pose.orientation.y = 0
+#my_pose.orientation.z = 0
+#my_pose.orientation.w = 1
+
+# teach pendant calibration
+#my_pose = Pose()
+#my_pose.position.x = 0.24504257099717536
+#my_pose.position.y = 0.22471083581361112
+#my_pose.position.z = -0.0010702967065744312
+#my_pose.orientation.x = 0
+#my_pose.orientation.y = 0
+#my_pose.orientation.z = 0
+#my_pose.orientation.w = 1
+
+
+transformed_pose = transform_pose(my_pose, "robotiq_2f140_tcp", "newport_tabletop")
+
+roll, pitch, yaw = euler_from_quaternion(transformed_pose.orientation)
+
+print(transformed_pose)
+print("orientation:")
+print("  roll:  " + str(roll))
+print("  pitch: " + str(pitch))
+print("  yaw:   " + str(yaw))
