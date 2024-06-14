@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
+  <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
+
+  <!-- robot_description -->
+  <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab3023.launch"/>
+
+  <!-- Remap force controllers sensor topics **MUST be done before including the ur3 robot driver below -->
+  <remap from="/pipette_my_cartesian_force_controller/ft_sensor_wrench" to="/robotiq_ft_sensor/wrench_filtered" />
+  <remap from="/gripper_my_cartesian_force_controller/ft_sensor_wrench" to="/robotiq_ft_sensor/wrench_filtered" />
+
+  <!-- ur3 robot driver -->
+  <include file="$(find mimik_ur_launch)/launch/ur3-2017333047.launch">
+    <!-- <arg name="debug" value="true"/> -->
+    <arg name="controller_config_file" value="$(find mimik_ur3_setup_bringup)/config/ur3_controllers.yaml"/>
+    <!-- <arg name="controllers" default="joint_state_controller scaled_pos_joint_traj_controller speed_scaling_state_controller force_torque_sensor_controller robot_status_controller" doc="Controllers that are activated by default."/> -->
+    <arg name="controllers" default="joint_state_controller robot_status_controller" doc="Controllers that are activated by default."/>
+    <arg name="stopped_controllers" doc="Controllers that are initally loaded, but not started."
+         default="pos_joint_traj_controller
+                  joint_group_vel_controller
+                  gripper_my_cartesian_force_controller
+                  pipette_my_cartesian_force_controller
+                  my_cartesian_compliance_controller"/>
+    <arg name="robot_ip" default="192.168.0.20" doc="IP address by which the robot can be reached."/>
+  </include>
+
+  <!-- robotiq 2f140 driver -->
+  <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
+    <arg name="slave_number" default="9" />
+    <arg name="activate" default="True" />
+    <arg name="port" default="/dev/robotiq_2f_140" />
+  </include>
+
+  <!-- robotiq 2f140 action server -->
+  <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
+  </include>
+
+  <!-- robotiq ft300 -->
+  <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+    <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
+    <!-- /dev/{serial_id} -->
+    <param name="serial_id" type="str" value="robotiq_ft_300"/>
+  </node>
+
+  <!-- realsense ds415 driver -->
+  <group if="$(arg calibrate_camera)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="publish_tf"                default="true"/>
+    </include>
+  </group>
+
+  <group unless="$(arg calibrate_camera)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="publish_tf"                default="false"/>
+    </include>
+  </group>>
+
+  <!-- Launch the robot move_group in calibration mode-->
+  <group if="$(arg calibrate_camera)">
+    <include file="$(find mimik_ur3_lab_mobile_moveit_config)/launch/move_group.launch">
+    </include>
+  </group>
+
+  <node name="pipette_200ul" pkg="ros_robotic_tools" type="pipette_tool_action_server" output="screen">
+    <param name="baudrate" type="int" value="9600"/>
+    <param name="device" type="str" value="/dev/pipette_tool"/>
+    <param name="action_server_topic" type="str" value="/robotic_tools/pipette"/>
+  </node>
+
+
+  <!-- Cartesian Feedback -->
+  <include file="$(find task_space_feedback)/launch/task_space_feedback_server.launch"/>
+
+
+  <!-- start rviz (optional) -->
+  <group if="$(arg use_rviz)">
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world tabletop" />
+
+
+    <group if="$(arg calibrate_camera)">
+      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.hand_to_eye_calibration.rviz" />
+      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+            args="$(arg command_args)" output="screen"/>
+    </group>
+    <group unless="$(arg calibrate_camera)">
+      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.rviz" />
+      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+            args="$(arg command_args)" output="screen"/>
+    </group>
+
+  </group>
+
+</launch>
