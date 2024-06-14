@@ -249,11 +249,13 @@
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_left_inner_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_left_inner_knuckle" reason="Adjacent"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_left_outer_knuckle" reason="Adjacent"/>
+    <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_left_outer_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_fingertip" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_fingertip_pad" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_inner_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_inner_knuckle" reason="Adjacent"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_outer_knuckle" reason="Adjacent"/>
+    <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_2f140_right_outer_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_ft300_coupling_robotside" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="robotiq_ft300_robotside" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_base_link" link2="ur3_wrist_1_link" reason="Never"/>
@@ -280,6 +282,7 @@
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_left_outer_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_left_outer_knuckle" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_right_fingertip" reason="Never"/>
+    <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_right_fingertip_pad" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_right_inner_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_right_inner_knuckle" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_fingertip_pad" link2="robotiq_2f140_right_outer_finger" reason="Never"/>
@@ -294,6 +297,7 @@
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_left_outer_knuckle" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_fingertip" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_fingertip_pad" reason="Never"/>
+    <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_inner_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_inner_knuckle" reason="Default"/>
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_outer_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_inner_finger" link2="robotiq_2f140_right_outer_knuckle" reason="Never"/>
@@ -332,6 +336,7 @@
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_2f140_right_inner_finger" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_2f140_right_inner_knuckle" reason="Default"/>
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_2f140_right_outer_finger" reason="Never"/>
+    <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_2f140_right_outer_knuckle" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_ft300_coupling_robotside" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="robotiq_ft300_robotside" reason="Never"/>
     <disable_collisions link1="robotiq_2f140_left_outer_knuckle" link2="ur3_wrist_1_link" reason="Never"/>
