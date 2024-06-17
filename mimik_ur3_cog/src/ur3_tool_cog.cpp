@@ -10,9 +10,12 @@ geometry_msgs::InertiaStamped getFT300COG();
 geometry_msgs::InertiaStamped getDualGripperAdapterCOG();
 geometry_msgs::InertiaStamped getCameraAdapterCOG();
 geometry_msgs::InertiaStamped getCameraCOG();
-geometry_msgs::InertiaStamped getCameraUSBCOG();
 geometry_msgs::InertiaStamped get2F140COG();
 geometry_msgs::InertiaStamped getPipetteCOG();
+geometry_msgs::InertiaStamped getPipetteCableCOG();
+geometry_msgs::InertiaStamped get2F140CableCOG();
+geometry_msgs::InertiaStamped getFT300CableCOG();
+geometry_msgs::InertiaStamped getCameraCableCOG();
 
 int main(int argc, char** argv)
 {
@@ -30,6 +33,10 @@ int main(int argc, char** argv)
   inertia_vec.emplace_back(getCameraCOG());
   inertia_vec.emplace_back(get2F140COG());
   inertia_vec.emplace_back(getPipetteCOG());
+  inertia_vec.emplace_back(getPipetteCableCOG());
+  inertia_vec.emplace_back(get2F140CableCOG());
+  inertia_vec.emplace_back(getFT300CableCOG());
+  inertia_vec.emplace_back(getCameraCableCOG());
 
   std::string to_frame = "ur3_tool0";
   auto cog = computeCOG(inertia_vec, to_frame);
@@ -193,8 +200,76 @@ geometry_msgs::InertiaStamped getCameraCOG()
   return inertia;
 }
 
-geometry_msgs::InertiaStamped getCameraUSBCOG()
+geometry_msgs::InertiaStamped getPipetteCableCOG()
 {
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "pipette_base";
+
+  std::vector<COG> cog_vec{
+
+    // Updated on 17/06/2024 from excel sheet
+    COG{ .mass = 0.00529, .cog{ 0.00496, 0.04226, -0.00993 } }
+  };
+
+  auto cog = computeCOG(cog_vec);
+
+  COGToInertia(cog, inertia.inertia);
+
+  return inertia;
+}
+
+geometry_msgs::InertiaStamped get2F140CableCOG()
+{
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "robotiq_2f140_base_link";
+
+  std::vector<COG> cog_vec{
+
+    // Updated on 17/06/2024 from excel sheet
+    COG{ .mass = 0.0062, .cog{ -0.0051, 0.00201, -0.02863 } }
+  };
+
+  auto cog = computeCOG(cog_vec);
+
+  COGToInertia(cog, inertia.inertia);
+
+  return inertia;
+}
+
+geometry_msgs::InertiaStamped getFT300CableCOG()
+{
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "robotiq_ft300_robotside";
+
+  std::vector<COG> cog_vec{
+
+    // Updated on 17/06/2024 from excel sheet
+    COG{ .mass = 0.00869, .cog{ 0.03974, 0.05923, -0.02493 } }
+  };
+
+  auto cog = computeCOG(cog_vec);
+
+  COGToInertia(cog, inertia.inertia);
+
+  return inertia;
+}
+
+geometry_msgs::InertiaStamped getCameraCableCOG()
+{
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "camera_adapter_robotside";
+
+  std::vector<COG> cog_vec{
+
+    // Updated on 17/06/2024 from excel sheet
+    COG{ .mass = 0.02532, .cog{ 0.00381, -0.03602, 0.01735 } }
+  };
+
+  auto cog = computeCOG(cog_vec);
+
+  COGToInertia(cog, inertia.inertia);
+
+  return inertia;
 }
 
 geometry_msgs::InertiaStamped getPipetteCOG()
