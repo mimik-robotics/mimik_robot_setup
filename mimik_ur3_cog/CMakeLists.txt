@@ -41,7 +41,7 @@ include_directories(
 
 add_library(${PROJECT_NAME}
   src/cog.cpp
-  src/transform_pose.cpp
+  src/transform_frame.cpp
 )
 
 add_executable(pipette_tool_cog src/pipette_tool_cog.cpp)

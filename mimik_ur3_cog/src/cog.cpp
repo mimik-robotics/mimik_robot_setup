@@ -1,5 +1,5 @@
 #include <mimik_ur3_cog/cog.h>
-#include <mimik_ur3_cog/transform_pose.h>
+#include <mimik_ur3_cog/transform_frame.h>
 
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_listener.h>
@@ -43,18 +43,15 @@ COG computeCOG(const std::vector<geometry_msgs::InertiaStamped>& inertia_vec, co
 
   for (const auto& inertia : inertia_vec)
   {
-    geometry_msgs::Pose pose_offset;
-    pose_offset.position.x = inertia.inertia.com.x;
-    pose_offset.position.y = inertia.inertia.com.y;
-    pose_offset.position.z = inertia.inertia.com.z;
-    pose_offset.orientation.w = 1.0;
+    Eigen::Isometry3d eig_offset = Eigen::Isometry3d::Identity();
+    eig_offset.translate(Eigen::Vector3d(inertia.inertia.com.x, inertia.inertia.com.y, inertia.inertia.com.z));
 
-    geometry_msgs::PoseStamped pose;
-    pose = transformPose(pose_offset, inertia.header.frame_id, to_frame, scene);
+    geometry_msgs::TransformStamped tf;
+    tf = transformFrame(inertia.header.frame_id, eig_offset, to_frame, scene);
 
-    cog_vec.emplace_back(
-        COG{ .mass = inertia.inertia.m,
-             .cog = Eigen::Vector3d{ pose.pose.position.x, pose.pose.position.y, pose.pose.position.z } });
+    cog_vec.emplace_back(COG{
+        .mass = inertia.inertia.m,
+        .cog = Eigen::Vector3d{ tf.transform.translation.x, tf.transform.translation.y, tf.transform.translation.z } });
   }
 
   // compute CoG
