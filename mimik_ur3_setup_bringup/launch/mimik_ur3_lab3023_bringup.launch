@@ -3,6 +3,7 @@
 
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
   <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
+  <arg name="enable_camera" default="true" doc="Flag to enable/disable the realsense camera"/>
 
   <!-- robot_description -->
   <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab3023.launch"/>
@@ -46,16 +47,20 @@
 
   <!-- realsense ds415 driver -->
   <group if="$(arg calibrate_camera)">
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-      <arg name="publish_tf"                default="true"/>
-    </include>
+    <group if="$(arg enable_camera)">
+      <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="publish_tf"                default="true"/>
+      </include>
+    </group>
   </group>
 
   <group unless="$(arg calibrate_camera)">
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-      <arg name="publish_tf"                default="false"/>
-    </include>
-  </group>>
+    <group if="$(arg enable_camera)">
+      <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="publish_tf"                default="false"/>
+      </include>
+    </group>
+  </group>
 
   <!-- Launch the robot move_group in calibration mode-->
   <group if="$(arg calibrate_camera)">
