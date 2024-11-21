@@ -82,8 +82,8 @@
     <disable_collisions link1="back_wall" link2="ur3_wrist_2_link" reason="Never"/>
     <disable_collisions link1="back_wall" link2="ur3_wrist_3_link" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="camera_link" reason="Adjacent"/>
-    <disable_collisions link1="camera_adapter_robotside" link2="camera_usb_plug_link" reason="Default"/>
-    <disable_collisions link1="camera_adapter_robotside" link2="dual_gripper_coupling_robotside" reason="Adjacent"/>
+    <disable_collisions link1="camera_adapter_robotside" link2="camera_usb_plug_link" reason="Never"/>
+    <disable_collisions link1="camera_adapter_robotside" link2="dual_gripper_coupling_robotside" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="floor" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="hut_wall" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="pipette_base" reason="Never"/>
@@ -93,13 +93,13 @@
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_left_inner_finger" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_left_inner_knuckle" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_left_outer_finger" reason="Never"/>
-    <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_left_outer_knuckle" reason="Never"/>
+    <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_left_outer_knuckle" reason="Default"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_fingertip" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_fingertip_pad" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_inner_finger" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_inner_knuckle" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_outer_finger" reason="Never"/>
-    <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_outer_knuckle" reason="Never"/>
+    <disable_collisions link1="camera_adapter_robotside" link2="robotiq_2f140_right_outer_knuckle" reason="Default"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_ft300_coupling_robotside" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="robotiq_ft300_robotside" reason="Never"/>
     <disable_collisions link1="camera_adapter_robotside" link2="ur3_wrist_1_link" reason="Never"/>
@@ -164,7 +164,7 @@
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="floor" reason="Never"/>
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="hut_wall" reason="Never"/>
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="pipette_base" reason="Adjacent"/>
-    <disable_collisions link1="dual_gripper_coupling_robotside" link2="robotiq_2f140_base_link" reason="Default"/>
+    <disable_collisions link1="dual_gripper_coupling_robotside" link2="robotiq_2f140_base_link" reason="Adjacent"/>
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="robotiq_2f140_left_fingertip" reason="Never"/>
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="robotiq_2f140_left_fingertip_pad" reason="Never"/>
     <disable_collisions link1="dual_gripper_coupling_robotside" link2="robotiq_2f140_left_inner_finger" reason="Never"/>

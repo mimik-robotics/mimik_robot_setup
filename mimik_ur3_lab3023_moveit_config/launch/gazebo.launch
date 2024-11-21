@@ -13,7 +13,7 @@
   </include>
 
   <!-- Set the robot urdf on the parameter server -->
-  <param name="robot_description" textfile="$(find mimik_ur3_lab3023_moveit_config)/config/gazebo_mimik_ur3_station_portable.urdf" />
+  <param name="robot_description" command="xacro  '$(find mimik_ur3_setup_description)/urdf/mimik_ur3_lab3023.xacro'" />
 
   <!-- Unpause the simulation after loading the robot model -->
   <arg name="unpause" value="$(eval '' if arg('paused') else '-unpause')" />
