@@ -187,7 +187,7 @@ geometry_msgs::InertiaStamped getPicknikCameraAdapterCOG()
 geometry_msgs::InertiaStamped getCameraCOG()
 {
   geometry_msgs::InertiaStamped inertia;
-  inertia.header.frame_id = "camera_adapter_camera";
+  inertia.header.frame_id = "camera_adapter_toolside";
 
   // approximate to centroid of camera
   inertia.inertia.com.x = 0.020 / 2.0;
