@@ -8,7 +8,7 @@ using namespace mimik::ur3_cog;
 geometry_msgs::InertiaStamped getFT300CouplingCOG();
 geometry_msgs::InertiaStamped getFT300COG();
 geometry_msgs::InertiaStamped getDualGripperAdapterCOG();
-geometry_msgs::InertiaStamped getCameraAdapterCOG();
+geometry_msgs::InertiaStamped getPicknikCameraAdapterCOG();
 geometry_msgs::InertiaStamped getCameraCOG();
 geometry_msgs::InertiaStamped get2F140COG();
 geometry_msgs::InertiaStamped getPipetteCOG();
@@ -29,7 +29,7 @@ int main(int argc, char** argv)
   inertia_vec.emplace_back(getFT300CouplingCOG());
   inertia_vec.emplace_back(getFT300COG());
   inertia_vec.emplace_back(getDualGripperAdapterCOG());
-  inertia_vec.emplace_back(getCameraAdapterCOG());
+  inertia_vec.emplace_back(getPicknikCameraAdapterCOG());
   inertia_vec.emplace_back(getCameraCOG());
   inertia_vec.emplace_back(get2F140COG());
   inertia_vec.emplace_back(getPipetteCOG());
@@ -163,7 +163,7 @@ geometry_msgs::InertiaStamped get2F140COG()
   return inertia;
 }
 
-geometry_msgs::InertiaStamped getCameraAdapterCOG()
+geometry_msgs::InertiaStamped getPicknikCameraAdapterCOG()
 {
   geometry_msgs::InertiaStamped inertia;
   inertia.header.frame_id = "camera_adapter_robotside";
