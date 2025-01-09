@@ -8,6 +8,7 @@ using namespace mimik::ur3_cog;
 geometry_msgs::InertiaStamped getFT300CouplingCOG();
 geometry_msgs::InertiaStamped getFT300COG();
 geometry_msgs::InertiaStamped getDualGripperAdapterCOG();
+geometry_msgs::InertiaStamped getMimikCameraAdapterCOG();
 geometry_msgs::InertiaStamped getPicknikCameraAdapterCOG();
 geometry_msgs::InertiaStamped getCameraCOG();
 geometry_msgs::InertiaStamped get2F140COG();
@@ -29,7 +30,7 @@ int main(int argc, char** argv)
   inertia_vec.emplace_back(getFT300CouplingCOG());
   inertia_vec.emplace_back(getFT300COG());
   inertia_vec.emplace_back(getDualGripperAdapterCOG());
-  inertia_vec.emplace_back(getPicknikCameraAdapterCOG());
+  inertia_vec.emplace_back(getMimikCameraAdapterCOG());
   inertia_vec.emplace_back(getCameraCOG());
   inertia_vec.emplace_back(get2F140COG());
   inertia_vec.emplace_back(getPipetteCOG());
@@ -153,6 +154,27 @@ geometry_msgs::InertiaStamped get2F140COG()
     COG{ .mass = 0.005, .cog{ -0.00102, 0.01768, -0.01768 } },   // 2F140 Base Screw 2
     COG{ .mass = 0.005, .cog{ -0.00102, -0.01768, -0.01768 } },  // 2F140 Base Screw 3
     COG{ .mass = 0.005, .cog{ -0.00102, -0.01768, 0.01768 } },   // 2F140 Base Screw 4
+
+  };
+
+  auto cog = computeCOG(cog_vec);
+
+  COGToInertia(cog, inertia.inertia);
+
+  return inertia;
+}
+
+geometry_msgs::InertiaStamped getMimikCameraAdapterCOG()
+{
+  geometry_msgs::InertiaStamped inertia;
+  inertia.header.frame_id = "camera_adapter_robotside";
+
+  std::vector<COG> cog_vec{
+
+    // Updated on 07/06/2024 from excel sheet
+    COG{ .mass = 0.05709, .cog{ 0.017471, 0.0, 0.006842 } },  // Camera Adapter
+    COG{ .mass = 0.00047, .cog{ 0.042, 0.0225, 0.016 } },     // Camera Screw 1
+    COG{ .mass = 0.00047, .cog{ 0.042, -0.0225, 0.016 } },    // Camera Screw 2
 
   };
 
