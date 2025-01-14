@@ -44,14 +44,6 @@
   </group>
 
   <!-- robotiq ft300 -->
-
-  <!-- realsense ds415 driver -->
-  <group if="$(arg calibrate_camera)">
-    <group if="$(arg enable_camera)">
-      <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="publish_tf"                default="true"/>
-      </include>
-    </group>
   <group if="$(arg enable_fts)">
     <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
       <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
@@ -60,12 +52,14 @@
     </node>
   </group>
 
-  <group unless="$(arg calibrate_camera)">
-    <group if="$(arg enable_camera)">
-      <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="publish_tf"                default="false"/>
-      </include>
-    </group>
+  <!-- realsense ds415 driver -->
+  <group if="$(arg enable_camera)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="color_fps"         value="30"/>
+      <arg name="color_width"         value="1920"/>
+      <arg name="color_height"        value="1080"/>
+      <arg name="publish_tf"  value="$(arg calibrate_camera)"/>
+    </include>
   </group>
 
   <!-- Launch the robot move_group in calibration mode-->
