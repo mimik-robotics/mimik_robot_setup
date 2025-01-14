@@ -3,7 +3,9 @@
 
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
   <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
+  <arg name="enable_gripper" default="true" doc="Flag to enable/disable the gripper"/>
   <arg name="enable_camera" default="true" doc="Flag to enable/disable the realsense camera"/>
+  <arg name="enable_fts" default="true" doc="Flag to enable/disable the force torque sensor"/>
 
   <!-- robot_description -->
   <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab3023.launch"/>
@@ -28,22 +30,20 @@
   </include>
 
   <!-- robotiq 2f140 driver -->
-  <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
-    <arg name="slave_number" default="9" />
-    <arg name="activate" default="True" />
-    <arg name="port" default="/dev/robotiq_2f_140" />
-  </include>
+  <group if="$(arg enable_gripper)">
+    <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
+      <arg name="slave_number" default="9" />
+      <arg name="activate" default="True" />
+      <arg name="port" default="/dev/robotiq_2f_140" />
+    </include>
+  </group>
 
   <!-- robotiq 2f140 action server -->
-  <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
-  </include>
+  <group if="$(arg enable_gripper)">
+    <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch" />
+  </group>
 
   <!-- robotiq ft300 -->
-  <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
-    <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
-    <!-- /dev/{serial_id} -->
-    <param name="serial_id" type="str" value="robotiq_ft_300"/>
-  </node>
 
   <!-- realsense ds415 driver -->
   <group if="$(arg calibrate_camera)">
@@ -52,6 +52,12 @@
         <arg name="publish_tf"                default="true"/>
       </include>
     </group>
+  <group if="$(arg enable_fts)">
+    <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+      <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
+      <!-- /dev/{serial_id} -->
+      <param name="serial_id" type="str" value="robotiq_ft_300"/>
+    </node>
   </group>
 
   <group unless="$(arg calibrate_camera)">
