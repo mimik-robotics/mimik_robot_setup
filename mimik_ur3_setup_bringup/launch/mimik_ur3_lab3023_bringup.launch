@@ -85,7 +85,7 @@
 
 
     <group if="$(arg calibrate_camera)">
-      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.hand_to_eye_calibration.rviz" />
+      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab3023.hand_to_eye_calibration.rviz" />
       <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
             args="$(arg command_args)" output="screen"/>
     </group>
