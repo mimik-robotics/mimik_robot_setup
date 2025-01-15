@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
-  <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
+  <arg name="rviz_config" default="$(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab3023.rviz" doc="Flag for starting RViz."/>
   <arg name="enable_gripper" default="true" doc="Flag to enable/disable the gripper"/>
   <arg name="enable_camera" default="true" doc="Flag to enable/disable the realsense camera"/>
   <arg name="enable_fts" default="true" doc="Flag to enable/disable the force torque sensor"/>
@@ -58,13 +58,7 @@
       <arg name="color_fps"         value="30"/>
       <arg name="color_width"         value="1920"/>
       <arg name="color_height"        value="1080"/>
-      <arg name="publish_tf"  value="$(arg calibrate_camera)"/>
     </include>
-  </group>
-
-  <!-- Launch the robot move_group in calibration mode-->
-  <group if="$(arg calibrate_camera)">
-    <include file="$(find mimik_ur3_lab3023_moveit_config)/launch/move_group.launch" />
   </group>
 
   <node name="pipette_200ul" pkg="ros_robotic_tools" type="pipette_tool_action_server" output="screen">
@@ -82,19 +76,9 @@
   <group if="$(arg use_rviz)">
 
     <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world tabletop" />
-
-
-    <group if="$(arg calibrate_camera)">
-      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab3023.hand_to_eye_calibration.rviz" />
-      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-            args="$(arg command_args)" output="screen"/>
-    </group>
-    <group unless="$(arg calibrate_camera)">
-      <arg name="command_args" value="-d $(find mimik_ur3_setup_bringup)/etc/mimik_ur3_lab_mobile.rviz" />
-      <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-            args="$(arg command_args)" output="screen"/>
-    </group>
-
+    <arg name="command_args" value="-d $(arg rviz_config)" />
+    <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="$(arg command_args)" output="screen"/>
   </group>
 
 </launch>
