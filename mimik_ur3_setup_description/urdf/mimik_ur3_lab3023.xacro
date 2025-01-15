@@ -101,10 +101,6 @@
     <origin xyz="${0.02005/2} 0 ${-0.023/2}" rpy="0 0 0"/>
   </xacro:sensor_d415>
 
-
-  <link name="camera_color_optical_frame"/>
-
-
   <!-- 2f-140 gripper + sillicon fingertip pads -->
   <xacro:robotiq_2f_140
     prefix="robotiq_2f140_"
@@ -187,29 +183,21 @@
     <origin xyz="0.0443 0 -0.0385" rpy="${pi} 0 0" />
   </joint>
 
-  <!-- Calibrated with moveit_calibration pkg -->
-  <!-- Error: 0.0021 m, 0.0063 rad-->
-  <!-- <joint name="camera_color_optical_frame_joint" type="fixed"> -->
-  <!--   <parent link= "ur3_wrist_3_link" /> -->
-  <!--   <child link = "camera_color_optical_frame" /> -->
-  <!--   <origin xyz="-0.0852237 -0.0776651 0.0608126" rpy="-0.1188682 -0.7931895 -0.0029631" /> -->
-  <!-- </joint> -->
+  <!-- Calibrated with moveit_calibration pkg on 14/01/2025 (N = 5 samples)
+       Reprojection error:
+           Translation = 0.0006048 meters
+           Rotation    = 0.00143 radians
 
-  <!-- Physical dimensions -->
+       WARNING: in realsense launcher, set tf_publish to false or it will change this tf
+  -->
+  <link name="camera_color_optical_frame"/>
   <joint name="camera_color_optical_frame_joint" type="fixed">
-    <parent link="camera_adapter_toolside" />
-    <child link ="camera_color_optical_frame" />
-    <origin xyz="0.02005 0.035 0.0" rpy="${-pi/2.0} 0.0 ${-pi/2}" />
+    <parent link= "ur3_wrist_3_link" />
+    <child link = "camera_color_optical_frame" />
+    <!-- The RPY given by moveit_calibration is erroneous see:
+         https://github.com/moveit/moveit_calibration/issues/132 -->
+    <origin xyz="-0.137124 -0.0522788 0.106907" rpy="0.0255219 -0.7837478 -0.0339841" />
   </joint>
-
-
-  <!-- <joint name="robotiq_2f140_base_joint" type="fixed"> -->
-  <!--   <parent link= "dual_gripper_coupling_toolside_left" /> -->
-  <!--   <child link = "robotiq_2f140_base_link" /> -->
-  <!--   <!-\- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -\-> -->
-  <!--   <origin xyz="${tcp_calibration_gripper}" rpy="0 0 0" /> -->
-  <!-- </joint> -->
-
 
   <!-- Tool center point origin on the fingertip end when the gripper is fully closed -->
   <link name="robotiq_2f140_tcp" />
