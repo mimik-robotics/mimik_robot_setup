@@ -83,6 +83,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         camera_link:
           Alpha: 1
           Show Axes: false
@@ -314,8 +318,8 @@ Visualization Manager:
       Move Group Namespace: ""
       Name: HandEyeCalibration
       Planning Scene Topic: move_group/monitored_planning_scene
-      Rx: 0.0021
-      Ry: -0.784
+      Rx: 0.002
+      Ry: -0.7839
       Rz: -0.0219
       Tx: -0.1376
       Ty: -0.0522
@@ -334,7 +338,7 @@ Visualization Manager:
       object: handeye_target
       sensor: camera_color_optical_frame
       sensor_mount_type: 1
-      solver: crigroup/TsaiLenz1989
+      solver: crigroup/Daniilidis1999
       square size (px): 240
       squares, X: 5
       squares, Y: 7
@@ -590,7 +594,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.9483953714370728
+      Distance: 0.60912024974823
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -598,17 +602,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.2804892659187317
-        Y: -0.10153557360172272
-        Z: 0.22176755964756012
+        X: -0.3798331022262573
+        Y: -0.12050260603427887
+        Z: 0.13298477232456207
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3503984808921814
+      Pitch: 0.3453983664512634
       Target Frame: <Fixed Frame>
-      Yaw: 2.000405788421631
+      Yaw: 4.415403366088867
     Saved: ~
 Window Geometry:
   Displays:
