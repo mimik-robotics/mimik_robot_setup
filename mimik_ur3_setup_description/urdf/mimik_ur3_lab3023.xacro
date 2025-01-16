@@ -190,13 +190,22 @@
 
        WARNING: in realsense launcher, set tf_publish to false or it will change this tf
   -->
-  <link name="camera_color_optical_frame"/>
-  <joint name="camera_color_optical_frame_joint" type="fixed">
+  <link name="camera_color_optical_frame_pre"/>
+  <joint name="camera_color_optical_frame_pre_joint" type="fixed">
     <parent link= "ur3_wrist_3_link" />
-    <child link = "camera_color_optical_frame" />
+    <child link = "camera_color_optical_frame_pre" />
     <!-- The RPY given by moveit_calibration is erroneous see:
          https://github.com/moveit/moveit_calibration/issues/132 -->
     <origin xyz="-0.137124 -0.0522788 0.106907" rpy="0.0255219 -0.7837478 -0.0339841" />
+  </joint>
+
+  <link name="camera_color_optical_frame"/>
+  <joint name="camera_color_optical_frame_joint" type="fixed">
+    <parent link= "camera_color_optical_frame_pre" />
+    <child link = "camera_color_optical_frame" />
+    <!-- We add 20mm to achieve better accuracy after some test, the Charucobaord
+         board appeared elavated by ~16mm wrt. the URDF tabletop (newport_tabletop frame) -->
+    <origin xyz="0 0 0.02" rpy="0 0 0" />
   </joint>
 
   <!-- Tool center point origin on the fingertip end when the gripper is fully closed -->
