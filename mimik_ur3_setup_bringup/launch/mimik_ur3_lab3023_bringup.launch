@@ -62,6 +62,7 @@
     </include>
   </group>
 
+  <!-- pipette -->
   <node name="pipette_200ul" pkg="ros_robotic_tools" type="pipette_tool_action_server" output="screen">
     <param name="baudrate" type="int" value="9600"/>
     <param name="device" type="str" value="/dev/pipette_tool"/>
@@ -69,8 +70,11 @@
   </node>
 
 
-  <!-- Cartesian Feedback -->
+  <!-- cartesian feedback -->
   <include file="$(find task_space_feedback)/launch/task_space_feedback_server.launch"/>
+
+  <!-- bacterial colony analysis service -->
+  <node name="ros_colony_morphology" pkg="ros_colony_morphology" type="get_colony_morphology_server.py" output="screen" />
 
 
   <!-- start rviz (optional) -->
