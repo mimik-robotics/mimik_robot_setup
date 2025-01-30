@@ -90,8 +90,6 @@
     visual_parameters_file="$(find robotiq_description)/config/robotiq_agc_apl_159_002/visual_parameters_bbox.yaml"/>
 
 
-  <link name="pipette_tcp" />
-
   <!-- Mimik camera adapter attached to gripper -->
   <xacro:mimik_realsense_camera_adapter
     prefix="camera_adapter_"/>
@@ -205,7 +203,8 @@
     <child link = "camera_color_optical_frame" />
     <!-- We add 20mm to achieve better accuracy after some test, the Charucobaord
          board appeared elavated by ~16mm wrt. the URDF tabletop (newport_tabletop frame) -->
-    <origin xyz="0 0 0.02" rpy="0 0 0" />
+    <!-- <origin xyz="0 0 0.02" rpy="0 0 0" /> -->
+    <origin xyz="0 0 0.013" rpy="0 0 0" />
   </joint>
 
   <!-- Tool center point origin on the fingertip end when the gripper is fully closed -->
@@ -224,27 +223,103 @@
   </joint>
 
 
-
+  <!-- Offset mesh to match pipette_tcp link calibration -->
   <joint name="pipette_base_joint" type="fixed">
     <parent link= "dual_gripper_coupling_toolside_right" />
     <child link = "pipette_base" />
-    <origin xyz="0.0 0.0 0.0" rpy="${pi} 0.0 0.0" />
+    <!-- <origin xyz="0.00151316 -0.001407139 0.00353" rpy="${pi} 0.0 0.0" /> -->
+    <!-- add small offset to match real setup Z axis 1.25 mm -->
+    <origin xyz="0.00151316 -0.001407139 0.00228" rpy="${pi} 0.0 0.0" />
   </joint>
 
-
-  <!-- Sanity Check -->
-  <!-- <link name="pipette_tcp_test"/> -->
-  <!-- <joint name="lol" type="fixed"> -->
-  <!--   <parent link= "ur3_tool0" /> -->
-  <!--   <child link = "pipette_tcp_test" /> -->
-  <!--   <origin xyz="0.223439 -0.00046209 0.243363" rpy="0.0 0.0 0.0" /> -->
-  <!-- </joint> -->
-
-
-  <!-- Conveniance frame -->
+  <link name="pipette_tcp"/>
   <joint name="pipette_tcp_joint" type="fixed">
     <parent link= "pipette_tip" />
     <child link = "pipette_tcp" />
+    <!-- Rotate around X axis by PI
+
+         Change the rotation so that it matches the calibrated point
+         with a tip when adding the tip along the X axis.
+    -->
+    <origin xyz="0 0 0" rpy="-3.1415927 0.0272858 1e-7" />
+  </joint>
+
+  <!-- <link name="pipette_tcp_validation"/> -->
+  <!-- <joint name="pipette_tcp_validation_joint" type="fixed"> -->
+  <!--   <parent link= "pipette_tcp" /> -->
+  <!--   <child link = "pipette_tcp_validation" /> -->
+  <!--   <!-\- <origin xyz="0 0 0" rpy="${pi} 0 0" /> -\-> -->
+  <!--   <origin xyz="0.0458171 0 0" rpy="0 0 0" /> -->
+  <!-- </joint> -->
+
+
+  <!-- Calibrated with the UR3 Teach Pendant on 17/01/2025 (N = 4 samples) dowel pin located on JJ24 newport tabletop -->
+  <link name="pipette_with_tip_tcp_pre"/>
+  <joint name="pipette_with_tip_tcp_joint_pre" type="fixed">
+    <parent link= "ur3_tool0" />
+    <child link = "pipette_with_tip_tcp_pre" />
+    <!-- The rotation given by the teach pendant is wrt. the UR3 base frame
+         X = 0.26253
+         Y = -0.00353
+         Z = 0.28204
+
+         Axis with angle magnitude
+         RX = -1.7569
+         RY = -1.7511
+         RZ = 0.7206
+
+         Converted to URDF RPY:
+         R = -2.3521618
+         P = -0.0085883
+         Y = 1.5639119
+
+         Rotate the frame so that the +X axis points away from the pipette tip (Y=PI/2, Z=PI)
+
+         Currently in the newport tabletop by: -0.008388061879533032
+
+    -->
+    <origin xyz="0.26253 -0.00353 0.28204" rpy="1.5707963 -0.7853981 0" />
+  </joint>
+
+  <!-- Adjust for real world height table -->
+  <link name="pipette_with_tip_tcp"/>
+  <joint name="pipette_with_tip_tcp_joint" type="fixed">
+    <parent link= "pipette_with_tip_tcp_pre" />
+    <child link = "pipette_with_tip_tcp" />
+    <origin xyz="-0.0083 0 0" rpy="0 0 0" />
+  </joint>
+
+
+
+
+  <!-- Start from the calibrated TCP with tip and move upwards by -X units
+       Found experimentally:
+         w/  tip: -173.47mm (Base Z axis)
+         w/o tip: -219.27mm ...
+         X = 45.8mm
+
+         +9.2mm difference with the latest calibration in the Z axis
+
+         tip head
+         frame.p = KDL::Vector(0, 0, 0.0456);
+         TODO
+
+  -->
+  <link name="pipette_tcp_from_tool0"/>
+  <joint name="pipette_tcp_from_tool0_joint" type="fixed">
+    <parent link= "pipette_with_tip_tcp" />
+    <child link = "pipette_tcp_from_tool0" />
+    <origin xyz="-0.0458 0 0" rpy="0 0 0" />
+  </joint>
+
+
+
+
+  <!-- Conveniance frame -->
+  <link name="pipette_tcp_old"/>
+  <joint name="pipette_tcp_old_joint" type="fixed">
+    <parent link= "pipette_tip" />
+    <child link = "pipette_tcp_old" />
     <!-- Calibrated on Apr 18 2024 with Tool Point Calibration ROS package -->
     <!-- Calibration captured 4 tool poses (out of 4 requested). Computing calibration... -->
     <!-- Calibrated tcp (meters in xyz): [   0.223439 -0.00046209    0.243363] from ur3_tool0 -->
