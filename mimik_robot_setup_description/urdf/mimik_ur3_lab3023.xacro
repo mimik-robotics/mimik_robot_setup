@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="mimik_ur3_lab3023" xmlns:xacro="http://ros.org/wiki/xacro" >
   <xacro:include filename="$(find mimik_description)/urdf/newport/vh3660_48x48_macro.xacro"/>
-  <xacro:include filename="$(find mimik_description)/urdf/mimik/ur3_big_mounting_plate_macro.xacro"/>
+  <xacro:include filename="$(find mimik_description)/urdf/mimik/ur_big_mounting_plate_macro.xacro"/>
   <xacro:include filename="$(find ur_description)/urdf/inc/ur3_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_fts_300_cpl_062/robotiq_fts_300_cpl_062_macro.xacro"/>
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_ft_300/robotiq_ft_300_macro.xacro"/>
@@ -66,16 +66,14 @@
   <xacro:newport_vh3660_48x48
     prefix="newport_"/>
 
-  <xacro:mimik_ur3_big_mounting_plate
-    prefix="ur3_mounting_plate_"/>
+  <xacro:mimik_ur_big_mounting_plate
+    prefix="ur_mounting_plate_"/>
 
   <!-- UR3 with S/N: 2017333047 -->
-  <xacro:ur5_robot
-    prefix="ur3_" />
-  <!-- <xacro:ur3_robot -->
-  <!--   prefix="ur3_" -->
-  <!--   kinematics_parameters_file="$(find mimik_ur_launch)/etc/ur3-2017333047-calibration.yaml" -->
-  <!--   visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_vhacd_h16.yaml"/> -->
+  <xacro:ur3_robot
+    prefix="ur_"
+    kinematics_parameters_file="$(find mimik_ur_launch)/etc/ur3-2017333047-calibration.yaml"
+    visual_parameters_file="$(find ur_description)/config/ur3/visual_parameters_vhacd_h16.yaml"/>
 
   <!-- FT-300 ur coupling + sensor -->
   <xacro:robotiq_fts_300_cpl_062
@@ -136,21 +134,21 @@
     <origin xyz="0 ${-(1.6342/2.0 - 0.1/2.0)} ${2.5/2.0 - 0.0254/2.0}" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <joint name="ur3_mounting_plate_base_joint" type="fixed">
+  <joint name="ur_mounting_plate_base_joint" type="fixed">
     <parent link= "newport_tabletop" />
-    <child link = "ur3_mounting_plate_base" />
+    <child link = "ur_mounting_plate_base" />
     <!-- Newport tabletop has matrix of 1 inch hole gap-->
     <origin xyz="${0 * 0.0254} ${-1 * 0.0254}  0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <joint name="ur3_base_joint" type="fixed">
-    <parent link= "ur3_mounting_plate_robotside" />
-    <child link = "ur3_base_link" />
+  <joint name="ur_base_joint" type="fixed">
+    <parent link= "ur_mounting_plate_robotside" />
+    <child link = "ur_base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
   </joint>
 
   <joint name="robotiq_fts300_coupling_joint" type="fixed">
-    <parent link= "ur3_flange" />
+    <parent link= "ur_flange" />
     <child link = "robotiq_ft300_coupling_robotside" />
     <!-- Align mounting plate to flange -->
     <origin xyz="0.0 0.0 0.0" rpy="${pi} 0.0 0.0" />
@@ -192,7 +190,7 @@
   -->
   <link name="camera_color_optical_frame_pre"/>
   <joint name="camera_color_optical_frame_pre_joint" type="fixed">
-    <parent link= "ur3_wrist_3_link" />
+    <parent link= "ur_wrist_3_link" />
     <child link = "camera_color_optical_frame_pre" />
     <!-- The RPY given by moveit_calibration is erroneous see:
          https://github.com/moveit/moveit_calibration/issues/132 -->
@@ -258,7 +256,7 @@
   <!-- Calibrated with the UR3 Teach Pendant on 17/01/2025 (N = 4 samples) dowel pin located on JJ24 newport tabletop -->
   <link name="pipette_with_tip_tcp_pre"/>
   <joint name="pipette_with_tip_tcp_joint_pre" type="fixed">
-    <parent link= "ur3_tool0" />
+    <parent link= "ur_tool0" />
     <child link = "pipette_with_tip_tcp_pre" />
     <!-- The rotation given by the teach pendant is wrt. the UR3 base frame
          X = 0.26253

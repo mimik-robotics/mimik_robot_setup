@@ -13,12 +13,12 @@ hardware_control_loop:
 # Settings for ros_control hardware interface
 ur_hardware_interface:
   joints: &robot_joints
-    - &joint1 ur3_shoulder_pan_joint
-    - &joint2 ur3_shoulder_lift_joint
-    - &joint3 ur3_elbow_joint
-    - &joint4 ur3_wrist_1_joint
-    - &joint5 ur3_wrist_2_joint
-    - &joint6 ur3_wrist_3_joint
+    - &joint1 ur_shoulder_pan_joint
+    - &joint2 ur_shoulder_lift_joint
+    - &joint3 ur_elbow_joint
+    - &joint4 ur_wrist_1_joint
+    - &joint5 ur_wrist_2_joint
+    - &joint6 ur_wrist_3_joint
 
 # Publish all joint states ----------------------------------
 joint_state_controller:
@@ -179,7 +179,7 @@ robot_status_controller:
 
 my_cartesian_motion_controller:
   type: "position_controllers/CartesianMotionController"
-  robot_base_link: "ur3_base_link"
+  robot_base_link: "ur_base_link"
   end_effector_link: "robotiq_2f140_tcp"
   target_frame_topic: "target_frame"
   joints: *robot_joints
@@ -194,7 +194,7 @@ my_cartesian_motion_controller:
 
 gripper_my_cartesian_force_controller:
   type: "position_controllers/CartesianForceController"
-  robot_base_link: "ur3_base_link"
+  robot_base_link: "ur_base_link"
   end_effector_link: "robotiq_2f140_tcp"
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
   hand_frame_control: false # Indicate in which frame the target_wrench is given:
@@ -236,7 +236,7 @@ gripper_my_cartesian_force_controller:
 
 pipette_my_cartesian_force_controller:
   type: "position_controllers/CartesianForceController"
-  robot_base_link: "ur3_base_link"
+  robot_base_link: "ur_base_link"
   end_effector_link: "pipette_tcp"
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
   hand_frame_control: false # Indicate in which frame the target_wrench is given:
@@ -278,7 +278,7 @@ pipette_my_cartesian_force_controller:
 
 my_cartesian_compliance_controller:
   type: "position_controllers/CartesianComplianceController"
-  robot_base_link: "ur3_base_link"
+  robot_base_link: "ur_base_link"
   end_effector_link: "robotiq_2f140_tcp"
   ft_sensor_ref_link: "robotiq_ft300_frame_id"
   compliance_ref_link: "robotiq_2f140_tcp"
