@@ -4,7 +4,7 @@ moveit_setup_assistant_config:
     relative_path: urdf/mimik_ur3_lab3023.xacro
     xacro_args: ""
   SRDF:
-    relative_path: config/mimik_ur3_station_portable.srdf
+    relative_path: config/mimik_ur3_lab3023.srdf
   CONFIG:
     author_name: Captain Yoshi
     author_email: captain.yoshisaur@gmail.com
