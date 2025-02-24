@@ -1,0 +1,38 @@
+controller_list:
+  - name: fake_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - robotiq_2f140_left_outer_knuckle_joint
+  - name: fake_eef_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - panda_joint1
+      - panda_joint2
+      - panda_joint3
+      - panda_joint4
+      - panda_joint5
+      - panda_joint6
+      - panda_joint7
+  - name: fake_eef_pipette_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - panda_joint1
+      - panda_joint2
+      - panda_joint3
+      - panda_joint4
+      - panda_joint5
+      - panda_joint6
+      - panda_joint7
+  - name: fake_eef_camera_color_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - panda_joint1
+      - panda_joint2
+      - panda_joint3
+      - panda_joint4
+      - panda_joint5
+      - panda_joint6
+      - panda_joint7
+initial:  # Define initial robot poses per group
+  - group: eef_gripper
+    pose: ready
