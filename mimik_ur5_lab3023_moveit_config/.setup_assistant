@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mimik_robot_setup_description
+    relative_path: urdf/mimik_ur5_lab3023.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/mimik_ur5_lab3023.srdf
+  CONFIG:
+    author_name: Captain Yoshi
+    author_email: captain.yoshisaur@gmail.com
+    generated_timestamp: 1732217689
