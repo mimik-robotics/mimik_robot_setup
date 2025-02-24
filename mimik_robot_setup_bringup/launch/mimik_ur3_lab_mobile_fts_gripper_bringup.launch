@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
+
+  <!-- robot_description -->
+  <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab_mobile_fts_gripper.launch"/>
+
+  <!-- ur3 robot driver -->
+  <include file="$(find mimik_ur_launch)/launch/ur3-2017333047.launch">
+    <arg name="controller_config_file" value="$(find mimik_robot_setup_bringup)/config/ur3_fts_gripper_controllers.yaml"/>
+    <!-- <arg name="controllers" default="joint_state_controller scaled_pos_joint_traj_controller speed_scaling_state_controller force_torque_sensor_controller robot_status_controller" doc="Controllers that are activated by default."/> -->
+    <arg name="controllers" default="joint_state_controller  robot_status_controller" doc="Controllers that are activated by default."/>
+    <arg name="stopped_controllers" default="pos_joint_traj_controller joint_group_vel_controller my_cartesian_force_controller my_cartesian_compliance_controller" doc="Controllers that are initally loaded, but not started."/>
+    <arg name="robot_ip" default="192.168.0.20" doc="IP address by which the robot can be reached."/>
+  </include>
+
+  <!-- robotiq 2f140 driver -->
+  <arg name="gripper_name" default="robotiq_2f140" />
+
+  <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
+    <arg name="gripper_name" default="$(arg gripper_name)" />
+    <arg name="slave_number" default="9" />
+    <arg name="activate" default="True" />
+    <arg name="port" default="/dev/robotiq_2f_140" />
+  </include>
+
+  <!-- robotiq 2f140 action server -->
+  <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
+    <arg name="gripper_name" default="$(arg gripper_name)" />
+  </include>
+
+  <!-- robotiq 2f140 action client -->
+  <include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_client.launch">
+    <arg name="gripper_name" default="$(arg gripper_name)" />
+    <arg name="position" value="0.792" />
+    <arg name="max_retry" value="5" />
+    <arg name="timeout" value="2" />
+  </include>
+
+  <!-- robotiq ft300 -->
+  <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+    <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
+    <!-- /dev/{serial_id} -->
+    <param name="serial_id" type="str" value="robotiq_ft_300"/>
+
+    <remap from="/robotiq_ft_sensor/wrench" to="/my_cartesian_force_controller/ft_sensor_wrench"/>
+    <!-- <remap from="/robotiq_ft_sensor/wrench" to="/my_cartesian_compliance_controller/ft_sensor_wrench"/> -->
+  </node>
+
+
+
+  <!-- <node name="pipette_200ul" pkg="robotic_tool" type="robotic_tool_pipette_tool_action_server" output="screen"> -->
+  <!--   <param name="baudrate" type="int" value="1000000"/> -->
+  <!--   <param name="device" type="str" value="/dev/pipette_tool"/> -->
+  <!--   <param name="action_server" type="str" value="/pipette"/> -->
+  <!-- </node> -->
+
+
+  <!-- start rviz (optional) -->
+  <group if="$(arg use_rviz)">
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world tabletop" />
+
+    <arg name="command_args" value="-d $(find mimik_robot_setup_bringup)/etc/mimik_ur3_lab_mobile.rviz" />
+
+    <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="$(arg command_args)" output="screen">
+    </node>
+  </group>
+
+</launch>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mimik_robot_setup_bringup</name>
+  <version>0.0.0</version>
+  <description>Mimik's robot laboratory setup</description>
+
+  <author>Captain Yoshi</author>
+  <maintainer email="captain.yoshisaur@gmail.com">Captain Yoshi</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>mimik_ur_launch</exec_depend>
+  <exec_depend>mimik_ur3_setup_description</exec_depend>
+
+</package>
