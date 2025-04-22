@@ -55,7 +55,7 @@
     <include file="$(find realsense2_camera)/launch/rs_camera.launch">
       <arg name="publish_tf"                default="false"/>
     </include>
-  </group>>
+  </group>
 
   <!-- Launch the robot move_group in calibration mode-->
   <group if="$(arg calibrate_camera)">
