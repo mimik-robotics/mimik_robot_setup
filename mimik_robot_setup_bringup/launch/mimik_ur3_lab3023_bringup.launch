@@ -8,7 +8,7 @@
   <arg name="enable_fts" default="true" doc="Flag to enable/disable the force torque sensor"/>
 
   <!-- robot_description -->
-  <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab3023.launch"/>
+  <include file="$(find mimik_robot_setup_description)/launch/load_mimik_ur3_lab3023.launch"/>
 
   <!-- Remap force controllers sensor topics **MUST be done before including the ur3 robot driver below -->
   <remap from="/pipette_my_cartesian_force_controller/ft_sensor_wrench" to="/robotiq_ft_sensor/wrench_filtered" />

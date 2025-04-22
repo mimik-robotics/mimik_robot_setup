@@ -4,7 +4,7 @@
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
 
   <!-- robot_description -->
-  <include file="$(find mimik_ur3_setup_description)/launch/load_mimik_ur3_lab_mobile_capture_tool.launch"/>
+  <include file="$(find mimik_robot_setup_description)/launch/load_mimik_ur3_lab_mobile_capture_tool.launch"/>
 
   <!-- ur3 robot driver -->
   <include file="$(find mimik_ur_launch)/launch/ur3-2017333047.launch">

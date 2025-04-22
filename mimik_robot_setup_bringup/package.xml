@@ -12,6 +12,6 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <exec_depend>mimik_ur_launch</exec_depend>
-  <exec_depend>mimik_ur3_setup_description</exec_depend>
+  <exec_depend>mimik_robot_setup_description</exec_depend>
 
 </package>
