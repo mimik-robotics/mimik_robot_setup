@@ -181,30 +181,12 @@
     <origin xyz="0.0443 0 -0.0385" rpy="${pi} 0 0" />
   </joint>
 
-  <!-- Calibrated with moveit_calibration pkg on 14/01/2025 (N = 5 samples)
-       Reprojection error:
-           Translation = 0.0006048 meters
-           Rotation    = 0.00143 radians
-
-       WARNING: in realsense launcher, set tf_publish to false or it will change this tf
-  -->
-  <link name="camera_color_optical_frame_pre"/>
-  <joint name="camera_color_optical_frame_pre_joint" type="fixed">
-    <parent link= "panda_flange" />
-    <child link = "camera_color_optical_frame_pre" />
-    <!-- The RPY given by moveit_calibration is erroneous see:
-         https://github.com/moveit/moveit_calibration/issues/132 -->
-    <origin xyz="-0.137124 -0.0522788 0.106907" rpy="0.0255219 -0.7837478 -0.0339841" />
-  </joint>
-
   <link name="camera_color_optical_frame"/>
   <joint name="camera_color_optical_frame_joint" type="fixed">
-    <parent link= "camera_color_optical_frame_pre" />
+    <parent link= "camera_adapter_toolside" />
     <child link = "camera_color_optical_frame" />
-    <!-- We add 20mm to achieve better accuracy after some test, the Charucobaord
-         board appeared elavated by ~16mm wrt. the URDF tabletop (newport_tabletop frame) -->
-    <!-- <origin xyz="0 0 0.02" rpy="0 0 0" /> -->
-    <origin xyz="0 0 0.013" rpy="0 0 0" />
+    <!-- Approximate physical location -->
+    <origin xyz="0.02005 0.035 0.0" rpy="${-pi/2} 0 ${-pi/2}" />
   </joint>
 
   <!-- Tool center point origin on the fingertip end when the gripper is fully closed -->
