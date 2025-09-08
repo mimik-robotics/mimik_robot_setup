@@ -1,4 +1,4 @@
-#include <mimik_cog/transform_frame.h>
+#include <mimik_moveit_com/transform_frame.h>
 
 #include <moveit_msgs/PlanningScene.h>
 #include <moveit/planning_scene_monitor/planning_scene_monitor.h>
@@ -7,8 +7,7 @@
 
 #include <stdexcept>
 
-namespace mimik {
-namespace cog {
+namespace mimik_moveit_com {
 
 geometry_msgs::TransformStamped transformFrame(const std::string& from_frame, const std::string& to_frame,
                                                const planning_scene::PlanningScene& scene)
@@ -43,5 +42,4 @@ geometry_msgs::TransformStamped transformFrame(const std::string& from_frame, co
   return transform_stamped;
 }
 
-}  // namespace cog
-}  // namespace mimik
+}  // namespace mimik_moveit_com

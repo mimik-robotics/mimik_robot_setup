@@ -5,8 +5,7 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <moveit/planning_scene/planning_scene.h>
 
-namespace mimik {
-namespace cog {
+namespace mimik_moveit_com {
 
 /** Converts a frame into the desired frame
  *
@@ -27,5 +26,4 @@ geometry_msgs::TransformStamped transformFrame(const std::string& from_frame, co
 geometry_msgs::TransformStamped transformFrame(const std::string& from_frame, const Eigen::Isometry3d& from_offset,
                                                const std::string& to_frame, const planning_scene::PlanningScene& scene);
 
-}  // namespace cog
-}  // namespace mimik
+}  // namespace mimik_moveit_com

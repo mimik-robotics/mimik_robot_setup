@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>mimik_cog</name>
+  <name>mimik_moveit_com</name>
   <version>0.0.0</version>
-  <description>Compute the CoG of robot setups</description>
+  <description>CoM calculator of robot setups</description>
 
   <author>Captain Yoshi</author>
   <maintainer email="captain.yoshisaur@gmail.com">Captain Yoshi</maintainer>

@@ -5,13 +5,12 @@
 
 #include <Eigen/Geometry>
 
-namespace mimik {
-namespace cog {
+namespace mimik_moveit_com {
 
-struct COG
+struct CoM
 {
   double mass;          // kg
-  Eigen::Vector3d cog;  // meters
+  Eigen::Vector3d com;  // meters
 };
 
 /*
@@ -31,13 +30,12 @@ struct COG
  *       ‾‾‾
  *      i = 1
  */
-COG computeCOG(const std::vector<COG>& cog_vec);
+CoM computeCoM(const std::vector<CoM>& cog_vec);
 
-COG computeCOG(const std::vector<geometry_msgs::InertiaStamped>& inertia_vec, const std::string& to_frame);
+CoM computeCoM(const std::vector<geometry_msgs::InertiaStamped>& inertia_vec, const std::string& to_frame);
 
-void COGToInertia(const COG& cog, geometry_msgs::Inertia& inertia);
+void CoMToInertia(const CoM& cog, geometry_msgs::Inertia& inertia);
 
-void print(const COG& cog);
+void print(const CoM& cog);
 
-}  // namespace cog
-}  // namespace mimik
+}  // namespace mimik_moveit_com

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1.3)
-project(mimik_cog)
+project(mimik_moveit_com)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -40,15 +40,15 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME}
-  src/cog.cpp
+  src/com.cpp
   src/transform_frame.cpp
 )
 
-add_executable(pipette_tool_cog src/pipette_tool_cog.cpp)
-target_link_libraries(pipette_tool_cog ${PROJECT_NAME} ${catkin_LIBRARIES})
+add_executable(pipette_tool_com src/pipette_tool_com.cpp)
+target_link_libraries(pipette_tool_com ${PROJECT_NAME} ${catkin_LIBRARIES})
 
-add_executable(ur3_tool_cog src/ur3_tool_cog.cpp)
-target_link_libraries(ur3_tool_cog ${PROJECT_NAME} ${catkin_LIBRARIES})
+add_executable(ur3_tool_com src/ur3_tool_com.cpp)
+target_link_libraries(ur3_tool_com ${PROJECT_NAME} ${catkin_LIBRARIES})
 
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -56,8 +56,8 @@ install(DIRECTORY include/${PROJECT_NAME}/
 
 install(TARGETS
   ${PROJECT_NAME}
-  pipette_tool_cog
-  ur3_tool_cog
+  pipette_tool_com
+  ur3_tool_com
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
