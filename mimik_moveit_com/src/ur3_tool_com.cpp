@@ -39,7 +39,7 @@ int main(int argc, char** argv)
   inertia_vec.emplace_back(getFT300CableCoM());
   inertia_vec.emplace_back(getCameraCableCoM());
 
-  std::string to_frame = "ur3_tool0";
+  std::string to_frame = "ur_tool0";
   auto com = computeCoM(inertia_vec, to_frame);
 
   // print Com
