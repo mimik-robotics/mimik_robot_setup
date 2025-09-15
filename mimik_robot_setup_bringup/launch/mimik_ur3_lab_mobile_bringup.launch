@@ -3,6 +3,10 @@
 
   <arg name="use_rviz" default="false" doc="Flag for starting RViz."/>
   <arg name="calibrate_camera" default="false" doc="Flag for calibrating the realsense camera"/>
+  <arg name="robot_ip" default="192.168.0.20" doc="IP address by which the robot can be reached."/>
+  <arg name="robotiq_gripper_device" default="/dev/robotiq_2f_140" doc="Device path for the Robotiq 2F gripper"/>
+  <arg name="robotiq_ft_device_id" default="robotiq_ft_300" doc="Device id (without the /dev) for the Robotiq FT sensor"/>
+  <arg name="pipette_tool_device" default="/dev/pipette_tool" doc="Device path for the pipette tool"/>
 
   <!-- robot_description -->
   <include file="$(find mimik_robot_setup_description)/launch/load_mimik_ur3_lab_mobile.launch"/>
@@ -23,14 +27,14 @@
                   gripper_my_cartesian_force_controller
                   pipette_my_cartesian_force_controller
                   my_cartesian_compliance_controller"/>
-    <arg name="robot_ip" default="192.168.0.20" doc="IP address by which the robot can be reached."/>
+    <arg name="robot_ip" value="$(arg robot_ip)"/>
   </include>
 
   <!-- robotiq 2f140 driver -->
   <include file="$(find robotiq_2f_gripper_control)/launch/robotiq_2f_gripper_serial.launch">
     <arg name="slave_number" default="9" />
     <arg name="activate" default="True" />
-    <arg name="port" default="/dev/robotiq_2f_140" />
+    <arg name="port" value="$(arg robotiq_gripper_device)"/>
   </include>
 
   <!-- robotiq 2f140 action server -->
@@ -41,7 +45,7 @@
   <node name="robotiq_ft_sensor" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
     <param name="frame_id" type="str" value="robotiq_ft300_reference_frame"/>
     <!-- /dev/{serial_id} -->
-    <param name="serial_id" type="str" value="robotiq_ft_300"/>
+    <param name="serial_id" type="str" value="$(arg robotiq_ft_device_id)"/>
   </node>
 
   <!-- realsense ds415 driver -->
@@ -65,7 +69,7 @@
 
   <node name="pipette_200ul" pkg="ros_robotic_tools" type="pipette_tool_action_server" output="screen">
     <param name="baudrate" type="int" value="9600"/>
-    <param name="device" type="str" value="/dev/pipette_tool"/>
+    <param name="device" type="str" value="$(arg pipette_tool_device)"/>
     <param name="action_server_topic" type="str" value="/robotic_tools/pipette"/>
   </node>
 
